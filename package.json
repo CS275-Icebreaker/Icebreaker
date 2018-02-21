@@ -1,0 +1,19 @@
+{
+  "name": "icebreaker",
+  "version": "0.1.0",
+  "description": "Icebreaker helps create a sense of community between people who are meeting for the first time",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/CS275-Icebreaker/Icebreaker.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
