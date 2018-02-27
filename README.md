@@ -1,4 +1,4 @@
-![Icicles hanging down](/img/icon.png)  
+![Icicles hanging down](/src/www/img/logo.png)  
 # Icebreaker
 Icebreaker helps create a sense of community between people who are meeting for 
 the first time.
