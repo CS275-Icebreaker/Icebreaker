@@ -1,4 +1,4 @@
-![Icicles hanging down](/src/www/img/logo.png)  
+![Breaking Iceberg Logo](/src/www/img/logo-small.png)  
 # Icebreaker
 Icebreaker helps create a sense of community between people who are meeting for 
 the first time.
