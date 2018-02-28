@@ -92,8 +92,23 @@ Complete these steps:
 
 - Open the Pull Request	
 	- Click on the link provided in the Slack by the code review requester
-- Navigate to the "Files changed" tab
-- 
+- Pull down the Pull Request's branch
+	- Run `git checkout <branch>`
+- Run the application
+	- Verify it works
+	- See if the new features from the Pull Request's description work
+- Navigate to the "Files changed" tab of the Pull Request
+- Click the green "Review changes" button in the top right
+- Comment, Approve, or Request changes
+	- Write a piece of text explaining your thoughts on the code
+	- Submit it as a comment if
+		- You don't want to formally request someone spend time 
+		  changing their code
+	- Submit it as an approval if	
+		- You think the code is of good quality and will run in master
+	- Submit it as a request for changes if
+		- You think there are some parts of the code that could be 
+		  improved
 
 # Icons
 Icons provided by [Icons8](https://icons8.com).
