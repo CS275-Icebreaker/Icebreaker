@@ -7,6 +7,12 @@ the first time.
 - [Overview](#overview)
 - [Running](#running)
 - [Developing](#developing)
+	- [Getting The Latest Code](#getting-the-latest-code)
+	- [Making A New Branch](#making-a-new-branch)
+	- [Work On A Feature](#work-on-a-feature)
+	- [Opening A Pull Request](#opening-a-pull-request)
+	- [Reviewing A Pull Request](#reviewing-a-pull-request)
+	- [Merging A Pull Request](#merging-a-pull-request)
 - [Icons](#icons)
 
 # Overview
@@ -63,7 +69,7 @@ To make a new branch complete these steps:
 - Create the new branch
 	- Run `git checkout -b <branch name>`
 
-## Work On The Feature
+## Work On A Feature
 As you work on the feature in your new branch you should commit your work.  
 
 To save your work complete the following steps:
@@ -109,6 +115,27 @@ Complete these steps:
 	- Submit it as a request for changes if
 		- You think there are some parts of the code that could be 
 		  improved
+
+## Merging A Pull Request
+Once a team member has reviewed your Pull Request GitHub will allow you to 
+merge your Pull Request into the `master` branch.  
+
+To merge your Pull Request complete the following steps:
+
+- Navigate to your Pull Request on GitHub
+- Press the "Merge pull request" button
+	- This button can only be pressed if a team member has approved your 
+	  pull request via code review
+- Delete your branch
+	- Now that your changes are merged you should delete your branch
+	- Click the "Delete branch" button below where the merge button was
+- Update your local computer
+	- Switch to the master branch
+		- Run `git checkout master`
+	- Retrieve the latest code from master
+		- Run `git pull origin master`
+	- Delete your old branch
+		- Run `git branch -D <old branch>`
 
 # Icons
 Icons provided by [Icons8](https://icons8.com).
