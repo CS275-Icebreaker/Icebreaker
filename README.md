@@ -39,7 +39,7 @@ To run Icebreaker complete the following steps:
 	  listening on port 8000
 	      navigate to localhost:8000 for development
           ```
-	  In this case you should navigate to [localhost:8000](http://localhost:8000).
+	- In this case you should navigate to [localhost:8000](http://localhost:8000).
 
 # Developing
 ## Get The Latest Code
