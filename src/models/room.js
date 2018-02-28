@@ -1,3 +1,11 @@
 "use strict";
 
-module.exports = {};
+class Room {
+	static findAll(q) {
+		return Promise.resolve([]);
+	}
+
+	destroy() {}
+}
+
+module.exports = Room;
