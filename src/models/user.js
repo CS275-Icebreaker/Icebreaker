@@ -1,43 +1,32 @@
 "use strict";
+var mongoose = require("mongoose");
+mongoose.connect('mongodb://localhost/test');
 
-class User {
-	static findAll(q) {
-		return Promise.resolve([]);
-	}
+var userschema = mongoose.Schema({
+	_id: {
+		type: Number
+	},
+	room_id: {
+		type: Number
+	},
+	name: {
+		type: String
+	},
+	year: {
+		type: String
+	},
+	major: {
+		type: String
+	},
+	topics: {
+		type: [Number],
+		notNull: true
+	},
+	auth_token_hash: {
+		type: String
+	},
+});
 
-	const Model = sequelize.define('user', {
-		id: {
-			type: Sequelize.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
-		},
-		room_id: {
-			type: Sequelize.INTEGER,
-			notNull: true
-		},
-		name: {
-			type: Sequelize.STRING,
-			notNull: true
-		},
-		year: {
-			type: Sequelize.STRING,
-			notNull: true
-		},
-		major: {
-			type: Sequelize.STRING,
-			notNull: true
-		},
-		topics: {
-			type: Sequelize.ARRAY(Sequelize.INTEGER),
-			notNull: true
-		},
-		auth_token_hash: {
-			type: Sequelize.STRING,
-			notNull: true
-		},
-	});
-
-	destroy () {}
-}
+var User = mongoose.model('User', userschema);
 
 module.exports = User;
