@@ -1,3 +1,6 @@
 # NodeJs
 *.log
 node_modules
+
+# Mongodb
+run-data/
