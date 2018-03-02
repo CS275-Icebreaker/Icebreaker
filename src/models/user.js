@@ -1,11 +1,7 @@
 "use strict";
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/test');
 
 var userschema = mongoose.Schema({
-	_id: {
-		type: Number
-	},
 	room_id: {
 		type: Number
 	},
