@@ -1,11 +1,30 @@
 "use strict";
+var mongoose = require("mongoose");
 
-class Group {
-	static findAll(q) {
-		return Promise.resolve([]);
+var groupschema = mongoose.Schema({
+	room_id: {
+		type: mongoose.Schema.Types.ObjectId
+	},
+	topic_id: {
+		type: mongoose.Schema.Types.ObjectId
+	},
+	stage: {
+		type: Number
+	},
+	action: {
+		type: String
+	},
+	timeline: {
+		type: [{
+			start: { type: Date },
+			end:   { type: Date }
+		}]
+	},
+	members: {
+		type: [mongoose.Schema.Types.ObjectId]
 	}
+});
 
-	destroy() {}
-}
+var Group = mongoose.model('Group', groupschema);
 
 module.exports = Group;
