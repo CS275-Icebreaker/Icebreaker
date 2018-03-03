@@ -3,6 +3,10 @@
 // App configuration
 const config = require("./config");
 
+// MongoDB setup
+const mongoose = require("mongoose");
+mongoose.connect(config.mongoURI);
+
 // Express setup
 const express = require("express");
 const app = express();
@@ -13,6 +17,7 @@ app.use(express.static(config.staticDir));
 app.get("/api/test", (req, res) => {
 	res.send({status: "ok"});
 });
+
 
 // Listen
 app.listen(config.port, () => {
