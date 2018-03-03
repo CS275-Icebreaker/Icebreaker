@@ -18,11 +18,6 @@ app.get("/api/test", (req, res) => {
 	res.send({status: "ok"});
 });
 
-const User = require("./models/user.js");
-var usertest = new User({room_id: 1, name: "Joe", year: "freshman", major: "cs", topics: [1,2,3], auth_token_hash: "doot"});
-usertest.save(function(err) {
-	console.log(err);
-});
 
 // Listen
 app.listen(config.port, () => {
