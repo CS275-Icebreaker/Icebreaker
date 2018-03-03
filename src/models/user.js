@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 
 var userschema = mongoose.Schema({
 	room_id: {
-		type: Number
+		type: mongoose.Schema.Types.ObjectId
 	},
 	name: {
 		type: String
@@ -15,7 +15,7 @@ var userschema = mongoose.Schema({
 		type: String
 	},
 	topics: {
-		type: [Number],
+		type: [mongoose.Schema.Types.ObjectId],
 		notNull: true
 	},
 	auth_token_hash: {
