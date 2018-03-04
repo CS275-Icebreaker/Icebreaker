@@ -1,11 +1,27 @@
 "use strict";
+var mongoose = require("mongoose");
 
-class Room {
-	static findAll(q) {
-		return Promise.resolve([]);
+var roomschema = mongoose.Schema({
+	room_id: {
+		type: mongoose.Schema.Types.ObjectId
+	},
+	name: {
+		type: String
+	},
+	code: {
+		type: String
+	},
+	group_num: {
+		type: Number
+    },
+    stage: {
+        type: String
+    },
+	owner_id: {
+        type: mongoose.Schema.Types.ObjectId
 	}
+});
 
-	destroy() {}
-}
+var User = mongoose.model('Room', roomschema);
 
 module.exports = Room;
