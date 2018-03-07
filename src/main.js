@@ -14,10 +14,11 @@ const app = express();
 app.use(express.static(config.staticDir));
 
 // Endpoints
-app.get("/api/test", (req, res) => {
-	res.send({status: "ok"});
-});
+//app.get("/api/test", (req, res) => {
+//	res.send({status: "ok"});
+//});
 
+const Endpt = require("./endpoints/groups/byRoom.js");
 
 // Listen
 app.listen(config.port, () => {
