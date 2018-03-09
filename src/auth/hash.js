@@ -6,7 +6,8 @@ const SaltRounds = 10;
 
 /**
  * Hashes a string with the bcrypt algorithm
- * @param str {String} String value to hash
+ *
+ * @param {String} str String value to hash
  * @returns {Promise} Resolves with hashed value, rejects with error
  */
 function Hash(str) {
@@ -18,8 +19,8 @@ function Hash(str) {
  * This is done by hashing the plain text value and comparing the hashed result
  * to the provided hash.
  *
- * @param plainText {String} Un-hashed string to compare
- * @param hash {String} Hash to compare
+ * @param {String} plainText  Un-hashed string to compare
+ * @param {String} hash  Hash to compare
  * @returns {Promise} Resolves with a single boolean value indicating if the 
  *		      values are equal. Rejects with an error.
  */
