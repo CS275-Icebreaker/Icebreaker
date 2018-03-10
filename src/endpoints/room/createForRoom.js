@@ -1,6 +1,7 @@
 "use strict";
 
 var helpers = "../helpers";
+var Room = require("../../models/room");
 
 var URL = "/api/users/join";
 
@@ -14,7 +15,25 @@ function handle(req, res) {
 		return;
 	}
 
+	// TODO: Ensure room exists
+	var roomId = req.body.room_id;
+	/*
+	Room.findOne({"_id": roomId})
+		.then((room) => {
+			// If exists
+			if (room !== null) {
+				return Promise.resolve();
+			} else {
+				throw {msg: `room with id ${roomId} does not exist`, 
+					status: 404}
+			}
+		})
+		.catch((err) => {
+			throw `error checking for room with provided id: ${err}`;
+		});
+	*/
 
+	// TODO: Insert user
 }
 
 /**
