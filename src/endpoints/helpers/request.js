@@ -11,7 +11,7 @@
  * @returns {Boolean} indicates if all fields where present
  */
 function requireBodyFields(req, res, fields) {
-	missingFields = [];
+	var missingFields = [];
 
 	// Check provided fields exist
 	for (var field of fields) {

@@ -1,7 +1,7 @@
 "use strict";
 var mongoose = require("mongoose");
 
-var groupschema = mongoose.Schema({
+var groupschema = new mongoose.Schema({
 	room_id: {
 		type: mongoose.Schema.Types.ObjectId
 	},
