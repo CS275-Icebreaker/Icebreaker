@@ -4,16 +4,16 @@ const app = express();
 
 const Group = require("../../models/group.js");
 
-function myHandler(req, res) {
-	Group.find(function (err, groups) {
-		if (err) return console.error(err);
+function getGroupsByRoom(req, res) {
+	var query = Group.find({ 'room_id': req.params.room_id });
+	query.exec(function (err, groups) {
+		if (err) return handleError(err);
 		console.log(groups);
-	});
-	res.send(groups);
+	}
 }
 
 module.exports = {
 	register: function (app) {
-		app.get("/groups/room", myHandler);
+		app.get("/groups/room/:room_id", getGroupsByRoom);
 	}
 };
