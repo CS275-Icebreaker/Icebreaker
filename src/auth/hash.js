@@ -10,7 +10,7 @@ const SaltRounds = 10;
  * @param {String} str String value to hash
  * @returns {Promise} Resolves with hashed value, rejects with error
  */
-function Hash(str) {
+async function Hash(str) {
 	return bcrypt.hash(str, SaltRounds);
 }
 
@@ -24,7 +24,7 @@ function Hash(str) {
  * @returns {Promise} Resolves with a single boolean value indicating if the 
  *		      values are equal. Rejects with an error.
  */
-function Compare(plainText, hash) {
+async function Compare(plainText, hash) {
 	return bcrypt.compare(plainText, hash);
 }
 

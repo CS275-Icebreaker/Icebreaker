@@ -1,11 +1,12 @@
 "use strict";
 
-// App configuration
-const config = require("./config");
+var config = require("./config");
+var db = require("./db");
 
-// MongoDB setup
-const mongoose = require("mongoose");
-mongoose.connect(config.mongoURI)
+var Server = require("./server");
+
+// Connect to db
+db.connect()
 	.then(() => {
 		console.log("connected to MongoDB");
 	})
@@ -13,13 +14,12 @@ mongoose.connect(config.mongoURI)
 		console.error(`error connecting to MongoDB: ${err}`);
 	});
 
-// Express setup
-const express = require("express");
-const app = express();
-
-app.use(express.static(config.staticDir));
-
 // Listen
-app.listen(config.port, () => {
-	console.log(`listening on port ${config.port}`);
-});
+var server = new Server();
+server.start()
+	.then(() => {
+		console.log(`listening on port ${config.port}`);
+	})
+	.catch((err) => {
+		console.error(`error starting server: ${err}`);
+	});
