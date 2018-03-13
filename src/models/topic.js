@@ -1,11 +1,10 @@
 "use strict";
+var mongoose = require("mongoose");
 
-class Topic {
-	static findAll(q) {
-		return Promise.resolve([]);
-	}
+var TopicSchema = mongoose.Schema({
+	name: String
+});
 
-	destroy() {}
-}
+var Topic = mongoose.model('Topic', TopicSchema);
 
 module.exports = Topic;
