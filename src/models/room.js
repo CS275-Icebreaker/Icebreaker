@@ -1,4 +1,7 @@
 "use strict";
+
+var randtoken = require("rand-token");
+
 var mongoose = require("mongoose");
 
 var RoomSchema = mongoose.Schema({
@@ -8,6 +11,11 @@ var RoomSchema = mongoose.Schema({
 	stage: String,
 	owner_id: mongoose.Schema.Types.ObjectId
 });
+
+var codeChars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+RoomSchema.statics.GenerateCode = function() {
+	return randtoken.generate(4, codeChars);
+};
 
 var Room = mongoose.model('Room', RoomSchema);
 
