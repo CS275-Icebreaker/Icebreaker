@@ -9,6 +9,6 @@ var RoomSchema = mongoose.Schema({
 	owner_id: mongoose.Schema.Types.ObjectId
 });
 
-var User = mongoose.model('Room', RoomSchema);
+var Room = mongoose.model('Room', RoomSchema);
 
 module.exports = Room;
