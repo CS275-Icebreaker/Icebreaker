@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <style>
+        * {box-sizing: border-box}
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            background: #f1f1f1f1;
+        }
+
+        /* Slides */
+        .mySlides {
+            display: none;
+            padding: 80px;
+            text-align: center;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -30px;
+            padding: 16px;
+            color: #888;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            position: absolute;
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+        }
+
+        /* The dot/bullet/indicator container */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Add a background color to the active dot/circle */
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+
+    </style>
+
+
     <title>Icebreaker App</title>
 
-    <link rel="stylesheet" href="/css/style.css">
     <!-- jquery and jquerymobile links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
@@ -13,55 +84,435 @@
 </head>
 <body>
 
-<div data-role="page" id="create_room" data-theme="a" align="center">
-
+<div class="slideshow-container">
     <div data-role="header">
-        <a href="main_screen.html" data-icon="delete">Cancel</a>
-        <h3>Select topics 1 </h3>
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <a id="PageRefresh" data-icon="refresh">Refresh</a>
+        <h3>Select topics </h3>
     </div>
 
-
-    <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
-        <li><a href="#">
-            <img src="/img/sports.png">
-            <h2>Sports</h2>
-            </a>
-            <a href="#SportsInfo" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic info!</a>
-        </li>
-        <li><a href="#">
-            <img src="/img/video_games.png">
-            <h2>Video games</h2>
-            </a>
-            <a href="#VideoGamesInfo" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic info!</a>
-        </li>
-
-    </ul>
-    <div data-role="popup" id="SportsInfo" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-        <h3>Sports topic Information</h3>
-        <p>>.............................</p>
-        <a href="Select_topics_one.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
-    </div>
-
-    <div data-role="popup" id="VideoGamesInfo" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-        <h3>Video games topic Information</h3>
-        <p>>.............................</p>
-        <a href="Select_topics_one.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
-    </div>
-
-
-    <a href="Select_topics_two.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Next stage</a>
-
-
-
-    <div id="result"></div>
-    <footer>
-        <div data-role="footer" data-position="fixed">
-            <h4 align="center"> Icebreaker App</h4>
+    <!-- ========================================Topic 1=================================================================-->
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 1</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 1 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 1 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
         </div>
-    </footer>
+
+        <div data-role="popup" id="VideoGamesInfo" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 2=================================================================-->
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 2</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo2" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic info 2!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo2" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 2 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo2" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo2" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 3=================================================================-->
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 3</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo3" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 3 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo3" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 3 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo3" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo3" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 4=================================================================-->
 
 
-</div><!-- /page two -->
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 4</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo4" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 4 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo4" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 4 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo4" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="Select_topics_one.html4" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo4" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 5=================================================================-->
+
+
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 5</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo5" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 5 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo5" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 5 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo5" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo5" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 6=================================================================-->
+
+
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 6</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo6" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 6 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo6" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 6 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo6" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo6" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 7=================================================================-->
+
+
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 7</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo7" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 7 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo7" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 7 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo7" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo7" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 8=================================================================-->
+
+
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 8</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo8" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 8 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo8" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 8 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo8" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo8" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+    <!-- ========================================Topic 9=================================================================-->
+
+
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 9</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo9" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 9 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo9" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 9 info!</a>
+            </li>
+        </ul>
+        <!--pop-ups-->
+        <div data-role="popup" id="SportsInfo9" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo9" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+    </div>
+
+    <!-- ========================================Topic 10=================================================================-->
+
+
+
+    <div class="mySlides" data-theme="a" align="center">
+        <h4>Select topic 10</h4>
+        <ul data-role="listview" data-split-icon="info" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="/img/sports.png">
+                    <h2>Sports</h2>
+                </a>
+                <a href="#SportsInfo10" data-rel="popup" data-position-to="window" data-transition="pop">Sports topic 10 info!</a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/img/video_games.png">
+                    <h2>Video games</h2>
+                </a>
+                <a href="#VideoGamesInfo10" data-rel="popup" data-position-to="window" data-transition="pop">Video games topic 10 info!</a>
+            </li>
+        </ul>
+
+        <div data-role="popup" id="SportsInfo10" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Sports topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+
+        <div data-role="popup" id="VideoGamesInfo10" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h3>Video games topic Information</h3>
+            <p>>.............................</p>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+        </div>
+        <a href="/assigned-topics.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Next stage</a>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+
+
+<div class="dot-container">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
+    <span class="dot" onclick="currentSlide(8)"></span>
+    <span class="dot" onclick="currentSlide(9)"></span>
+    <span class="dot" onclick="currentSlide(10)"></span>
+
+</div>
+
+
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+    $('#PageRefresh').click(function() {
+
+        location.reload();
+
+    });
+</script>
+<footer>
+    <div data-role="footer" data-position="fixed">
+        <h4 align="center"> Icebreaker App</h4>
+    </div>
+</footer>
 
 </body>
 </html>

@@ -10,6 +10,7 @@ db.connect()
 	.then(() => {
 		console.log("connected to MongoDB");
 	})
+//it throws an error when it's unable to connect
 	.catch((err) => {
 		console.error(`error connecting to MongoDB: ${err}`);
 	});
