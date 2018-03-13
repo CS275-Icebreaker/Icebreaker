@@ -5,10 +5,10 @@ var RoomSchema = mongoose.Schema({
 	name: String,
 	code: String,
 	group_num: Number,
-    stage: String,
+	stage: String,
 	owner_id: mongoose.Schema.Types.ObjectId
 });
 
-var User = mongoose.model('Room', roomschema);
+var User = mongoose.model('Room', RoomSchema);
 
 module.exports = Room;
