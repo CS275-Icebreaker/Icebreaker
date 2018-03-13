@@ -22,23 +22,21 @@ function handle(req, res) {
 
 	// Ensure room with provided id exists
 	var roomId = req.body.room_id;
-	/*
-	Room.findOne({"_id": roomId})
-		.then((room) => {
-			// If exists
-			if (room !== null) {
-				return Promise.resolve();
-			} else {
-				throw {msg: `room with id ${roomId} does not exist`, 
-					status: 404}
-			}
-		})
-		.catch((err) => {
-			throw `error checking for room with provided id: ${err}`;
-		})
-	*/
-
-	var promise = new Promise((resolve, reject) => {
+	var promise = Room.findById(roomId)
+	.then((room) => {
+		// If exists
+		if (room !== null) {
+			return Promise.resolve();
+		} else {
+			throw {msg: `room with id ${roomId} does not exist`, 
+				status: 404};
+		}
+	})
+	.catch((err) => {
+		throw `error checking for room with provided id, `+
+			`id: ${roomId}, err: ${err}`;
+	})
+	.then(() => {
 		var state = {};
 
 		// Create auth token for user
@@ -51,7 +49,7 @@ function handle(req, res) {
 		return hash.Hash(token.value)
 			.then((hashStr) => {
 				state.hash = hashStr;
-				return resolve(state);
+				return Promise.resolve(state);
 			});
 	})
 	.then((state) => {
