@@ -1,28 +1,15 @@
 "use strict";
 var mongoose = require("mongoose");
 
-var userschema = mongoose.Schema({
-	room_id: {
-		type: mongoose.Schema.Types.ObjectId
-	},
-	name: {
-		type: String
-	},
-	year: {
-		type: String
-	},
-	major: {
-		type: String
-	},
-	topics: {
-		type: [mongoose.Schema.Types.ObjectId],
-		notNull: true
-	},
-	auth_token_hash: {
-		type: String
-	},
+var UserSchema = mongoose.Schema({
+	room_id:  mongoose.Schema.Types.ObjectId,
+	name: String,
+	year: String,
+	major: String,
+	topics: [mongoose.Schema.Types.ObjectId],
+	auth_token_hash: String
 });
 
-var User = mongoose.model('User', userschema);
+var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
