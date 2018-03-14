@@ -17,20 +17,25 @@
  * @param {Promise} promise Promise to send result of
  */
 function sendPromise(res, promise) {
-	promise.then((data) => {
-			res.send(data);
-		})
-		.catch((err) => {
-			// If in special format
-			if (err.msg !== undefined && err.status !== undefined) {
-				res.status(err.status).send({error: err.msg});
-			} else {
-				// Otherwise
-				res.status(500).send({
-					error: err
-				});
-			}
-		});
+	try {
+		promise
+			.catch((err) => {
+				// If in special format
+				if (err.msg !== undefined && err.status !== undefined) {
+					res.status(err.status).send({error: err.msg});
+				} else {
+					// Otherwise
+					res.status(500).send({
+						error: err
+					});
+				}
+			})
+			.then((data) => {
+				res.send(data);
+			});
+	} catch(err) {
+		throw `error sending response: ${err}`;
+	}
 }
 
 module.exports = {

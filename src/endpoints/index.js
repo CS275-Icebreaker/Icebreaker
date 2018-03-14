@@ -1,6 +1,7 @@
 "use strict";
 
 var users = require("./users");
+var topics = require("./topics");
 
 /**
  * Adds all Model method endpoint handlers to the Express app
@@ -8,6 +9,7 @@ var users = require("./users");
  */
 function register(app) {
 	users.register(app);
+	topics.register(app);
 }
 
 module.exports = {

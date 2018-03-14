@@ -1,7 +1,12 @@
-.PHONY: db db-dir
+.PHONY: server \
+	db db-dir
 
 DB_CONT_NAME=icebreaker-db
 DB_DATA_DIR=$(shell pwd)/run-data/mongo
+
+# server starts the NodeJs server
+server:
+	npm start
 
 # db starts the MongoDB docker container
 db: db-dir
