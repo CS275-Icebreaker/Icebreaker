@@ -25,9 +25,8 @@ To run Icebreaker complete the following steps:
 
 1. Get the most recent version of the code
 	- Run `git pull origin <branch>`
-2. Install NPM components and create a package.json file inside Incebreaker project directory
-	- Run `npm install express
-	- Run `npm install body-parser 
+2. Install NPM components
+	- Run `npm install`
 	- Only have to run this the first time, and every week or so
 3. Start NodeJs server
 	- Run `npm start`
