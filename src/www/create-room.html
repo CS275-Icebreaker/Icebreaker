@@ -7,17 +7,26 @@
 
     <link rel="stylesheet" href="/css/style.css">
     <!-- jquery and jquerymobile links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+            type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
 
+
+    <script>
+        $(document).ready(function() {
+            $("#JoinForm").validate();
+        });
+    </script>
 </head>
 <body>
 
 <div data-role="page" id="create_room" data-theme="a" align="center">
 
     <div data-role="header">
-        <a href="index.html" data-icon="delete">Cancel</a>
+        <a href="/index.html" data-icon="delete">Cancel</a>
         <h3>Create a room</h3>
     </div>
 
@@ -29,10 +38,17 @@
 
 
 
-    <form>
-        <input type="text" id="GetVal"/>
+    <form id="JoinForm" class="form-horizontal" action="enter-info.html">
+        <div class="form-group">
+            <p>
+                <label for="cname">Please enter your pin</label>
+                <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
+            </p>
+
+            <input class="submit" type="submit" value="Join">
+
+        </div>
     </form>
-    <a href="room-info.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
 
 
     <div id="result"></div>
@@ -43,7 +59,7 @@
     </footer>
 
 
-</div><!-- /page two -->
+</div>
 
 </body>
 </html>

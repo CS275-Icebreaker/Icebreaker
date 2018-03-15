@@ -1,6 +1,10 @@
 # NodeJs
 *.log
-node_modules
+node_modules/
 
 # Mongodb
 run-data/
+
+# Jetbrains
+*.iml
+.idea/

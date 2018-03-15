@@ -6,10 +6,19 @@
 
 
     <!-- jquery and jquerymobile links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+            type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
 
+
+    <script>
+        $(document).ready(function() {
+            $("#JoinForm").validate();
+        });
+    </script>
 </head>
 <br>
 <div data-role="page" id="one" align="center">
@@ -20,14 +29,22 @@
 
     <img src="img/logo.PNG" alt=" App logo" width="150" height="150">
 
-    <form>
-        <input type="text" id="GetVal"/>
-        <input type="button" id="JoinButton" value="Join"/>
+    <form id="JoinForm" class="form-horizontal" action="enter-info.html">
+        <div class="form-group">
+            <p>
+                <label for="cname">Please enter your pin</label>
+                <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
+            </p>
 
+                <input class="submit" type="submit" value="Join">
+
+        </div>
     </form>
 
     <h5> OR </h5>
     <a href="create-room.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+
+
 
     <footer>
         <div data-role="footer" data-position="fixed">
