@@ -1,9 +1,5 @@
 "use strict";
 
-// Express setup
-const express = require("express");
-const app = express();
-
 var Group = require("../../models/group.js");
 var helpers = require("../helpers");
 
