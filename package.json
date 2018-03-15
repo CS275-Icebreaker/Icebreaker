@@ -4,7 +4,7 @@
   "description": "Icebreaker helps create a sense of community between people who are meeting for the first time",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js",
+    "start": "nodemon src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,7 +14,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mongoose": "^5.0.7"
+    "mongoose": "^5.0.7",
+    "rand-token": "^0.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   }
 }
