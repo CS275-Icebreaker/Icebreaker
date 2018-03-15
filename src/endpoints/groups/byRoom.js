@@ -1,19 +1,31 @@
+"use strict";
+
 // Express setup
 const express = require("express");
 const app = express();
 
-const Group = require("../../models/group.js");
+var Group = require("../../models/group.js");
+var helpers = require("../helpers");
 
-function getGroupsByRoom(req, res) {
-	var query = Group.find({ 'room_id': req.params.room_id });
-	query.exec(function (err, groups) {
-		if (err) return handleError(err);
-		console.log(groups);
-	}
+var URL = "/api/groups/room/:roomid";
+
+function handle(req, res) {
+	var promise = Group.findById(req.params.room_id)
+	.then((room) => {
+		console.log(`room: ${room}`);
+	})
+	.catch((err) => {
+		throw `error finding room with id: ${err}`;
+	});
+	
+	helpers.response.sendPromise(promise);
+}
+
+
+function register(app) {
+	app.post(URL, handle);
 }
 
 module.exports = {
-	register: function (app) {
-		app.get("/groups/room/:room_id", getGroupsByRoom);
-	}
+	register: register
 };
