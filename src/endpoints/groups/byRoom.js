@@ -3,12 +3,12 @@
 var Group = require("../../models/group.js");
 var helpers = require("../helpers");
 
-var URL = "/api/groups/room/:roomid";
+var URL = "/api/groups/room/:room_id";
 
 function handle(req, res) {
-	var promise = Group.findById(req.params.room_id)
-	.then((room) => {
-		console.log(`room: ${room}`);
+	var promise = Group.find({"room_id": req.params.room_id})
+	.then((groups) => {
+		return Promise.resolve({groups: room});
 	})
 	.catch((err) => {
 		throw `error finding room with id: ${err}`;
@@ -19,7 +19,7 @@ function handle(req, res) {
 
 
 function register(app) {
-	app.post(URL, handle);
+	app.get(URL, handle);
 }
 
 module.exports = {
