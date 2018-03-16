@@ -8,13 +8,13 @@ var URL = "/api/groups/room/:room_id";
 function handle(req, res) {
 	var promise = Group.find({"room_id": req.params.room_id})
 	.then((groups) => {
-		return Promise.resolve({groups: room});
+		return Promise.resolve({groups: groups});
 	})
 	.catch((err) => {
 		throw `error finding room with id: ${err}`;
 	});
 	
-	helpers.response.sendPromise(promise);
+	helpers.response.sendPromise(res, promise);
 }
 
 
