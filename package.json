@@ -14,6 +14,18 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+<<<<<<< Updated upstream
     "express": "^4.16.2"
+=======
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7",
+    "mysql": "^2.15.0",
+    "rand-token": "^0.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+>>>>>>> Stashed changes
   }
 }

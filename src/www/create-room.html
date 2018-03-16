@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Icebreaker App</title>
+
+
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- jquery and jquerymobile links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+
+    <script >
+    function getPin()
+    {
+        var resultDiv =  document.getElementById("result");
+        var name = document.getElementById("name").value;
+        var URL = "http://localhost:8080/api/rooms";
+        var params = {
+                name: name
+            };
+
+        $.ajax({
+                type : 'POST',
+                url : URL,
+                dataType : 'json',
+                data : params,
+                success : function(msg)
+                { 
+                    var pin = msg.query.pin
+                    var res = "<p>This is the new code. Anyone who want to enter the room you just created must input this code at the start screen.</p>"
+                    + "<input type=\"text\" id=\"pin\" value =\"" + pin + "\" style=\"text-align:center;\"/>";
+                    
+                    $(resultDiv).html(res);
+                },
+
+                error: function (xhr, status, errorThrown) {
+                    alert(errorThrown);                 
+                }
+            });
+
+    }                                         
+    </script>
+
+</head>
+<body>
+
+<div data-role="page" id="create_room" data-theme="a" align="center">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>Create a room</h3>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <p>Instructions: </p>
+        <p>Enter the name of the room you would like to make: </p>
+    
+        <form>
+            <input type="text" id="name"/>
+    
+            <a href="" onclick="javascript:getPin();" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a> 
+        </form>
+    </div>
+
+   
+
+    <div id="result">
+        
+    </div>
+
+
+
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+
+
+</div>
+
+</body>
+</html>
