@@ -1,18 +1,21 @@
 "use strict";
 
-var config = require("./config");
+var Server = require("./server");
 var db = require("./db");
 
-var Server = require("./server");
+// Load configuration
+var config = require("./config");
+
+console.log(`loaded configuration for ${config.env} from ${config.configDir}`);
 
 // Connect to db
 db.connect()
 	.then(() => {
 		console.log("connected to MongoDB");
 	})
-//it throws an error when it's unable to connect
 	.catch((err) => {
 		console.error(`error connecting to MongoDB: ${err}`);
+		process.exit();
 	});
 
 // Listen
@@ -23,4 +26,5 @@ server.start()
 	})
 	.catch((err) => {
 		console.error(`error starting server: ${err}`);
+		process.exit();
 	});
