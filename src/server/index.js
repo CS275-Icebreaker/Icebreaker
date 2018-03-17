@@ -17,6 +17,7 @@ class Server {
 		this.app = express();
 
 		this.app.use(express.static(config.staticDir));
+		this.app.use("/lib", express.static("./node_modules"));
 
 		this.app.use(bodyParser.json());
 
