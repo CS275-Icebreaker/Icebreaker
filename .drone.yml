@@ -7,6 +7,7 @@ pipeline:
       - ${DRONE_COMMIT}
     when:
       branch: [ master ]
+      event: [ push, tag, deployment ]
     secrets: [ docker_username, docker_password ]
 
   helm_deploy:
@@ -19,5 +20,6 @@ pipeline:
     wait: true
     when:
       branch: [ master ]
+      event: [ push, tag, deployment ]
     secrets: [ api_server, secret_password, kubernetes_token ]
 
