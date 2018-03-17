@@ -5,4 +5,4 @@ COPY . /home/node
 
 RUN npm install
 
-CMD npm start
+CMD node src/main.js
