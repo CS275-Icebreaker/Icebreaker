@@ -4,7 +4,7 @@ pipeline:
     repo: noahhuppert/icebreaker
     tags: 
       - latest
-      - $$DRONE_COMMIT
+      - ${DRONE_COMMIT}
     secrets: [ docker_username, docker_password ]
 
   helm_deploy:
@@ -13,7 +13,7 @@ pipeline:
     chart: ./deploy/icebreaker
     release: icebreaker
     namespace: icebreaker
-    values: image.tag=$$DRONE_COMMIT
+    values: image.tag=${DRONE_COMMIT}
     wait: true
     when:
       branch: [deploy]
