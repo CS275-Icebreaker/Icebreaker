@@ -10,7 +10,6 @@ pipeline:
     skip_tls_verify: true
     chart: ./deploy/icebreaker
     release: icebreaker
-    debug: true
     wait: true
     when:
       branch: [deploy]
