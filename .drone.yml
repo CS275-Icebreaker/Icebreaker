@@ -5,6 +5,8 @@ pipeline:
     tags: 
       - latest
       - ${DRONE_COMMIT}
+    when:
+      branch: [ master ]
     secrets: [ docker_username, docker_password ]
 
   helm_deploy:
