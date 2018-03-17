@@ -5,11 +5,11 @@ NAME=icebreaker
 # all builds and deploys the chart
 all: build deploy
 
-# build packages the external dns chart
+# build packages the chart
 build:
 	helm package .
 
-# deploy pushes the external dns chart to the kubernetes cluster
+# deploy pushes the chart to the kubernetes cluster
 deploy: 
 	helm upgrade \
 		--install \
