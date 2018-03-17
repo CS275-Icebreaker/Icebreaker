@@ -150,7 +150,7 @@ Make a copy of `.env.example` named `.env` and add your own `DRONE_TOKEN` value.
 
 Next add the following secrets:  
 
-- `API_SERVER`: URL to Kuberenetes API server
+- `API_SERVER`: URL to Kubernetes API server
 - `KUBERNETES_TOKEN`: Kubernetes API token
 - `SECRET_PASSWORD`: General purpose secret value 
 - `DOCKER_USERNAME`: Docker Hub username
