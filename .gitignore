@@ -1,6 +1,7 @@
 # App
 config.production.js
 .env
+*.tgz
 
 # NodeJs
 *.log

@@ -20,9 +20,9 @@ app:
 		--net host \
 		-it \
 		--rm \
-		-v "$(shell pwd):/home/node" \
 		--name "${APP_CONT_NAME}" \
 		"${APP_CONT_TAG}"
+		#-v "$(shell pwd):/home/node" \
 
 # app-build builds the application docker container
 app-build:
