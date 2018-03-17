@@ -16,6 +16,6 @@ pipeline:
     values: image.tag=${DRONE_COMMIT}
     wait: true
     when:
-      branch: [master]
+      branch: [ master , deploy ]
     secrets: [ api_server, secret_password, kubernetes_token ]
 
