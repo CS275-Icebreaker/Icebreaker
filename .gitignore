@@ -1,3 +1,7 @@
+# App
+config.production.js
+.env
+
 # NodeJs
 *.log
 node_modules/

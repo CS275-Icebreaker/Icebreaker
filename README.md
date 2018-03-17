@@ -1,4 +1,6 @@
 ![Breaking Iceberg Logo](/src/www/img/logo-small.png)  
+![Drone CI Status](http://drone.noahh.io/api/badges/CS275-Icebreaker/Icebreaker/status.svg)  
+
 # Icebreaker
 Icebreaker helps create a sense of community between people who are meeting for 
 the first time.
@@ -13,6 +15,7 @@ the first time.
 	- [Opening A Pull Request](#opening-a-pull-request)
 	- [Reviewing A Pull Request](#reviewing-a-pull-request)
 	- [Merging A Pull Request](#merging-a-pull-request)
+- [Deployment](#deployment)
 - [Icons](#icons)
 
 # Overview
@@ -136,6 +139,43 @@ To merge your Pull Request complete the following steps:
 		- Run `git pull origin master`
 	- Delete your old branch
 		- Run `git branch -D <old branch>`
+
+# Deployment
+Icebreaker is automatically deployed to Kubernetes via Drone CI.  
+
+Some setup is required.  
+
+## Drone CI
+Make a copy of `.env.example` named `.env` and add your own `DRONE_TOKEN` value.  
+
+Next add the following secrets:  
+
+- `API_SERVER`: URL to Kuberenetes API server
+- `KUBERNETES_TOKEN`: Kubernetes API token
+- `SECRET_PASSWORD`: General purpose secret value 
+- `DOCKER_USERNAME`: Docker Hub username
+- `DOCKER_PASSWORD`: Docker Hub password
+
+Via the Drone CLI:  
+
+```
+$ drone secret add CS275-Icebreaker/Icebreaker \
+	--name <key> \
+	--value <value>
+```
+
+## Kubernetes
+The application must be provided with certain production configuration values 
+when run on the Kubernetes cluster.  
+
+To set these values make a file named `config.production.js` and make it export 
+any configuration options that are needed.  
+
+Then run the following command to upload this secret file to Kubernetes:  
+
+```
+$ kubectl -n icebreaker create secret generic config --from-file <path to config.production.js>
+```
 
 # Icons
 Icons provided by [Icons8](https://icons8.com).

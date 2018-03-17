@@ -1,0 +1,18 @@
+pipeline:
+  docker:
+    image: plugins/docker
+    repo: noahhuppert/icebreaker
+    tags: latest
+    secrets: [ docker_username, docker_password ]
+
+  helm_deploy:
+    image: quay.io/ipedrazas/drone-helm
+    skip_tls_verify: true
+    chart: ./deploy/icebreaker
+    release: icebreaker
+    debug: true
+    wait: true
+    when:
+      branch: [deploy]
+    secrets: [ api_server, secret_password, kubernetes_token ]
+

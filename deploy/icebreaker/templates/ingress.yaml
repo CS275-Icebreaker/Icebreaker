@@ -1,0 +1,31 @@
+{{- $fullName := include "fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.dns.hosts }} 
+ 
+spec:
+  tls:
+    - hosts:
+      {{- range .Values.ingress.hosts }}
+        - {{ . }}
+      {{- end }}
+      secretName: {{ template "name" . }}-tls
+  rules:
+  {{- range .Values.ingress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ $fullName }}
+              servicePort: http
+  {{- end }}
