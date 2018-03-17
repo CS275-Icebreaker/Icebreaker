@@ -169,7 +169,7 @@ The application must be provided with certain production configuration values
 when run on the Kubernetes cluster.  
 
 To set these values make a file named `config.production.js` and make it export 
-any configuration options that are needed.  
+these production specific configuration values.
 
 Then run the following command to upload this secret file to Kubernetes:  
 
