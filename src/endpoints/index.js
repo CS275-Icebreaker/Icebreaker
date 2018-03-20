@@ -1,6 +1,7 @@
 "use strict";
 
 var users = require("./users");
+var groups = require("./groups");
 var topics = require("./topics");
 var rooms = requore("./rooms");
 
@@ -10,6 +11,7 @@ var rooms = requore("./rooms");
  */
 function register(app) {
 	users.register(app);
+	groups.register(app);
 	topics.register(app);
 	rooms.register(app); 
 }
