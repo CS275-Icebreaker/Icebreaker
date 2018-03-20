@@ -1,21 +1,31 @@
 "use strict";
 
-// App configuration
-const config = require("./config");
+var Server = require("./server");
+var db = require("./db");
 
-// Express setup
-const express = require("express");
-const app = express();
 
-app.use(express.static(config.staticDir));
+// Load configuration
+var config = require("./config");
 
-// Endpoints
-app.get("/api/test", (req, res) => {
-	res.send({status: "ok"});
-});
+console.log(`loaded configuration for ${config.env} from ${config.configDir}`);
+
+// Connect to db
+db.connect()
+	.then(() => {
+		console.log("connected to MongoDB");
+	})
+	.catch((err) => {
+		console.error(`error connecting to MongoDB: ${err}`);
+		process.exit();
+	});
 
 // Listen
-app.listen(config.port, () => {
-	console.log(`listening on port ${config.port}`);
-	console.log(`    navigate to localhost:${config.port} for development`);
-});
+var server = new Server();
+server.start()
+	.then(() => {
+		console.log(`listening on port ${config.port}`);
+	})
+	.catch((err) => {
+		console.error(`error starting server: ${err}`);
+		process.exit();
+	});

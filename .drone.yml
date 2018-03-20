@@ -1,0 +1,25 @@
+pipeline:
+  docker:
+    image: plugins/docker
+    repo: noahhuppert/icebreaker
+    tags: 
+      - latest
+      - ${DRONE_COMMIT}
+    when:
+      branch: [ master ]
+      event: [ push, tag, deployment ]
+    secrets: [ docker_username, docker_password ]
+
+  helm_deploy:
+    image: quay.io/ipedrazas/drone-helm
+    skip_tls_verify: true
+    chart: ./deploy/icebreaker
+    release: icebreaker
+    namespace: icebreaker
+    values: image.tag=${DRONE_COMMIT}
+    wait: true
+    when:
+      branch: [ master ]
+      event: [ push, tag, deployment ]
+    secrets: [ api_server, secret_password, kubernetes_token ]
+
