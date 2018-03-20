@@ -16,7 +16,7 @@ function handle(req, res) {
 			throw {msg: `room with id $(roomId) does not exist`, status: 404};
 		}
 		else {
-			return Promise.resolve(); 
+			return Promise.resolve({room: room}); 
 		}
 	})
 	.catch((err) => {
