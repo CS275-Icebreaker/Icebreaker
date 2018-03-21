@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Icebreaker App</title>
+
+
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- jquery and jquerymobile links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+
+</head>
+<body>
+
+<div data-role="page" id="create_room" data-theme="a" align="center">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>Find room</h3>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <p>Instructions: </p>
+        <p>> To Find A Room, Please Enter A Valid 4 Digit Code</p>
+    </div><!-- /content -->
+
+
+
+    <form>
+        <input type="text" id="GetVal"/>
+    </form>
+    <a href="/enterinfo.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
+
+
+    <div id="result"></div>
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+
+
+</div>
+
+</body>
+</html>
+
