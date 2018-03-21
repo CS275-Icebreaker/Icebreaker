@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+		function getCode() {
+		var a = document.getElementById("test").value; 
+		var URL = "http://localhost:8080/api/users/join"; 
+		
+		$.ajax({
+			type: "POST"; 
+			url: URL, 
+			data: "{a}", 
+			datatype: "html", 
+			success: function(msg) {
+				document.getElementById("populate") = msg; 
+			}
+		});
+		}
+		</script>
+	</head>
+	<body>
+	
+		<input type="text" id="test">
+		<button onClick="getCode()" > Submit </button>
+		
+		<div id="populate"> <div>
+	
+	</body>
+</html>
