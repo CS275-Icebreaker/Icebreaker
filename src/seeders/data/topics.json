@@ -1,0 +1,104 @@
+{
+  "topics" : [
+    {
+      "name": "Sports",
+      "description": "Talk about your favorite sports, teams and players.",
+      "picture_path": "/img/sports.png"
+    },
+    {
+      "name": "Video Games",
+      "description": "Talk about your favorite games and platforms.",
+      "picture_path": "/img/video_games.png"
+    },
+    {
+      "name": "TV Shows",
+      "description": "Talk about your favorite shows - no spoilers!",
+      "picture_path": "/img/tv.png"
+    },
+    {
+      "name": "Biking",
+      "description": "Talk about your favorite routes and rides.",
+      "picture_path": "/img/biking.png"
+    },
+    {
+      "name": "Music",
+      "description": "Talk about your favorite artists and genres.",
+      "picture_path": "/img/music.png"
+    },
+    {
+      "name": "Cars",
+      "description": "Talk about your favorite models and manufacturers.",
+      "picture_path": "/img/cars.png"
+    },
+    {
+      "name": "Night Life",
+      "description": "Talk about your favorite clubs or bars.",
+      "picture_path": "/img/night_life.png"
+    },
+    {
+      "name": "Clubs and Organizations",
+      "description": "Talk about your the clubs and organizations you are part of.",
+      "picture_path": "/img/clubs_organizations.png"
+    },
+    {
+      "name": "Exercise",
+      "description": "Talk about your favorite workouts and goals.",
+      "picture_path": "/img/exercise.png"
+    },
+    {
+      "name": "Food",
+      "description": "Talk about your favorite dishes and cuisines.",
+      "picture_path": "/img/food.png"
+    },
+    {
+      "name": "Travel",
+      "description": "Talk about your favorite vacation destinations.",
+      "picture_path": "/img/travel.png"
+    },
+    {
+      "name": "Fashion",
+      "description": "Talk about your favorite brands and looks.",
+      "picture_path": "/img/fashion.png"
+    },
+    {
+      "name": "Classes",
+      "description": "Talk about your major and current classes.",
+      "picture_path": "/img/classes.png"
+    },
+    {
+      "name": "The Shaft",
+      "description": "Talk about your general bitterness toward Drexel.",
+      "picture_path": "/img/the_shaft.png"
+    },
+    {
+      "name": "Art",
+      "description": "Talk about your favorite artists or artistic media.",
+      "picture_path": "/img/art.png"
+    },
+    {
+      "name": "Books",
+      "description": "Talk about your favorite authors and series.",
+      "picture_path": "/img/books.png"
+    },
+    {
+      "name": "Theatre",
+      "description": "Talk about your favorite shows and musicals.",
+      "picture_path": "/img/theatre.png"
+    },
+    {
+      "name": "Politics",
+      "description": "Talk about your outlook on American politics.",
+      "picture_path": "/img/books.png"
+    },
+    {
+      "name": "Home Life",
+      "description": "Talk about where you're from and your family.",
+      "picture_path": "/img/home_life.png"
+    },
+    {
+      "name": "Celebrities",
+      "description": "Talk about the celebrities you follow.",
+      "picture_path": "/img/celebrities.png"
+    }
+  ]
+}
