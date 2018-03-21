@@ -15,10 +15,11 @@
  *
  * @param {Express Response} res Express response to send promise result with
  * @param {Promise} promise Promise to send result of
+ * @returns {Promise} Resolves when passed promise completes, no matter the status.
  */
 function sendPromise(res, promise) {
 	try {
-		promise
+		return promise
 			.catch((err) => {
 				// If in special format
 				if (err.msg !== undefined && err.status !== undefined) {
@@ -29,9 +30,11 @@ function sendPromise(res, promise) {
 						error: err
 					});
 				}
+				return Promise.resolve();
 			})
 			.then((data) => {
 				res.send(data);
+				return Promise.resolve();
 			});
 	} catch(err) {
 		throw `error sending response: ${err}`;
