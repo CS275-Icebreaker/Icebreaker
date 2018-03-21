@@ -36,6 +36,25 @@
             });
         });
 
+        function createRoom()
+        {
+            var roomName = document.getElementById("cname2").value;
+            var URL = "http://localhost:8000/api/rooms";
+            $.ajax({
+                type: "POST",
+                url: URL,
+                data: JSON.stringify({name: roomName}),
+                contentType: "application/json",
+                dataType: "html",
+                success: function(msg) {
+                    console.log(msg);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Error fetching " + URL);
+                }
+            });
+        }
+
     </script>
 
 </head>
@@ -89,11 +108,11 @@
     <form id="JoinForm2" class="form-horizontal" action="#user_info">
         <div class="form-group">
             <p>
-                <label for="cname2">Please enter your pin</label>
-                <input id="cname2" name="room_key" type="number" class="form-control required" maxlength="4">
+                <label for="cname2">Please enter a name for your room</label>
+                <input id="cname2" name="room_key" class="form-control required">
             </p>
 
-            <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+            <a href="#user_info" onclick="createRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
 
         </div>
     </form>
