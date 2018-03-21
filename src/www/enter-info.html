@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Icebreaker App</title>
@@ -7,10 +7,24 @@
 
     <link rel="stylesheet" href="/css/style.css">
     <!-- jquery and jquerymobile links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+            type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
 
+    <script>
+        $(document).ready(function() {
+            $("#JoinForm").validate({
+                rules: {
+                    SelectElmt: {
+                        required: true
+                    }
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -21,31 +35,32 @@
         <h3>User information</h3>
     </div>
 
-    <form>
+    <form id="JoinForm" class="form-horizontal" action="select-topics.html">
         <br>
         <br>
+        <div class="form-group">
+            <input type="text" name="text-basic" id="GetName" class="form-control required" placeholder="Enter your name..." required>
 
 
-        <input type="text" name="text-basic" id="GetName" placeholder="Enter your name..."/>
 
+            <input type="text" id="GetMajor" class="form-control required" placeholder="Enter your major..." required>
 
-        <input type="text" id="GetMajor" placeholder="Enter your major..."/>
+            <br>
+            <label for="GetYear">Select your year:</label>
+            <select name="SelectElmt" id="GetYear">
+                <option value="">Select one...</option>
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Pre-Junior">Pre-Junior</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+            </select>
+            <br>
+            <input class="submit" type="submit" value="Submit">
 
-        <br>
-        <label for="GetYear">Select your year:</label>
-        <select name="select-native-fc" id="GetYear">
-            <option value="Freshman">Freshman</option>
-            <option value="Sophomore">Sophomore</option>
-            <option value="Pre-Junior">Pre-Junior</option>
-            <option value="Junior">Junior</option>
-            <option value="Senior">Senior</option>
-        </select>
-
+            <br>
+        </div>
     </form>
-    <a href="/select-topics.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
-
-
-
 
     <div id="result"></div>
     <footer>
