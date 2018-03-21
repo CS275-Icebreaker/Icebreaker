@@ -3,6 +3,7 @@
 var findRoom = require("./findRoom");
 
 function register(app){
+	createRoom.register(app); 
 	findRoom.register(app);
 }
 
