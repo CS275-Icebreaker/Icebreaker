@@ -12,74 +12,85 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <link type="text/css" rel="stylesheet" href="/css/style.css"/>
     <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
-
-
-    <script type="text/javascript" src="/index.js"> </script>
-
-    <script>
-        $(document).ready(function() {
-            $("#JoinForm").validate();
-            $("#JoinForm2").validate({
-                rules: {
-                    room_key: {
-                        required: true
-                    }
-                }
-            });
-            $("#JoinForm3").validate({
-                rules: {
-                    SelectElmt: {
-                        required: true
-                    }
-                }
-            });
-        });
-
-        function createRoom()
-        {
-            var roomName = document.getElementById("cname2").value;
-            var URL = "http://localhost:8000/api/rooms";
-            $.ajax({
-                type: "POST",
-                url: URL,
-                data: JSON.stringify({name: roomName}),
-                contentType: "application/json",
-                dataType: "html",
-                success: function(msg) {
-                    console.log(msg);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log("Error fetching " + URL);
-                }
-            });
-        }
-
-    </script>
-
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-<div data-role="page" id="one" align="center">
-    <div data-role="header" data-position="fixed">
-        <h3 align="center">Icebreaker App </h3>
+    <!-- Home Screen -->
+    <div data-role="page" id="home" align="center">
+        <div data-role="header" data-position="fixed">
+            <h3 align="center">Icebreaker App </h3>
+        </div>
+        <br>
+
+        <img src="/img/logo.png" alt=" App logo" width="150" height="150">
+
+        <form id="JoinForm" class="form-horizontal" action="#user_info">
+            <div class="form-group">
+                <p>
+                    <label for="cname">Please enter your pin</label>
+                    <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
+                </p>
+
+                <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
+            </div>
+        </form>
+
+        <h5> OR </h5>
+        <a href="#create_room" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+
+        <footer>
+            <div data-role="footer" data-position="fixed">
+                <h4 align="center"> Icebreaker App</h4>
+            </div>
+        </footer>
     </div>
-    <br>
 
-    <img src="/img/logo.png" alt=" App logo" width="150" height="150">
 
-    <form id="JoinForm" class="form-horizontal" action="#user_info">
+<!-- Create Room Screen -->
+<div data-role="page" id="create_room" data-theme="a" align="center">
+
+    <script src="/js/create-room.js"></script>
+
+    <div data-role="header">
+        <a href="#home" data-icon="delete">Cancel</a>
+        <h3>Create a room</h3>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <p>Instructions: .</p>
+        <p>To create a room, please enter a key in the input box and then hit the submit button </p>
+    </div>
+
+
+
+    <form id="JoinForm2" class="form-horizontal" action="#user_info">
         <div class="form-group">
             <p>
-                <label for="cname">Please enter your pin</label>
-                <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
+                <label for="room-name">Please enter a name for your room</label>
+                <input id="room-name" name="room_key" class="form-control required">
             </p>
 
-            <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
+            <a href="#room_info" onclick="createRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+
         </div>
     </form>
+</div>
 
-    <h5> OR </h5>
-    <a href="#create_room" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+<!-- Room Info Screen -->
+<div data-role="page" id="room_info" align="center">
+    <script src="/js/room-info.js"></script>
+
+    <div data-role="header">
+        <a href="#home" data-icon="delete">Cancel</a>
+        <h3>User information</h3>
+    </div>
+
+
+    <h1 id="show-room-name"></h1>
+    <h1>Room Code:</h1>
+    <br>
+    <h1 id="show-room-code"></h1>
 
     <footer>
         <div data-role="footer" data-position="fixed">
@@ -88,47 +99,11 @@
     </footer>
 </div>
 
-
-<!--------------------------------------------Page 2 begin here------------------------------------------------------>
-<div data-role="page" id="create_room" data-theme="a" align="center">
-
-    <div data-role="header">
-        <a href="/index.html" data-icon="delete">Cancel</a>
-        <h3>Create a room</h3>
-    </div>
-
-
-    <div role="main" class="ui-content">
-        <p>Instructions: .</p>
-        <p>> To create a room, please enter a key in the input box and then hit the submit button </p>
-    </div><!-- /content -->
-
-
-
-    <form id="JoinForm2" class="form-horizontal" action="#user_info">
-        <div class="form-group">
-            <p>
-                <label for="cname2">Please enter a name for your room</label>
-                <input id="cname2" name="room_key" class="form-control required">
-            </p>
-
-            <a href="#user_info" onclick="createRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
-
-        </div>
-    </form>
-
-
-    <div id="result"></div>
-
-
-</div>
-
-<!--------------------------------------------Page 3 begin here------------------------------------------------------>
-
+<!-- User Info Screen -->
 <div data-role="page" id="user_info" data-theme="a" align="center" class="ui-field-contain">
 
     <div data-role="header">
-        <a href="/index.html" data-icon="delete">Cancel</a>
+        <a href="#home" data-icon="delete">Cancel</a>
         <h3>User information</h3>
     </div>
 
@@ -177,7 +152,7 @@
             <h3>Select topics </h3>
         </div>
 
-        <!-- ========================================Topic =================================================================-->
+        <!-- Topic  -->
         <div class="mySlides" data-theme="a"  align="center">
             <h4>Select topic 1</h4>
             <ul data-role="listview" data-split-theme="a" data-inset="true">
@@ -220,7 +195,7 @@
     </div>
 </div>
 
-<!-- ========================================Assigned topics part=================================================================-->
+<!-- Assigned topics screen -->
 
 
 <div data-role="page" id="assigned_topics" data-theme="a" align="center">
@@ -243,12 +218,11 @@
 
 
 </div>
-<!-- ======================================== topic info part=================================================================-->
 
-
-
-
+<!--  Select Topics Screen -->
 <div data-role="page" id="topics_page" data-theme="a" align="center">
+
+    <script src="/js/choose-topics.js"></script>
 
     <div data-role="header">
         <a href="/index.html" data-icon="delete">Cancel</a>
@@ -280,7 +254,7 @@
 </div>
 
 
-<!-- ======================================== Thank you part=================================================================-->
+<!--  Thank you screen -->
 
 <div data-role="page" id="thank-you-page" align="center">
     <div data-role="header" data-position="fixed">
@@ -301,5 +275,6 @@
 </div>
 
     <script src="/js/app.js"></script>
+    <script src="/js/index.js"> </script>
 </body>
 </html>
