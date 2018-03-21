@@ -4,6 +4,7 @@ var Server = require("./server");
 var db = require("./db");
 var Seeder = require("./seeders/topics.js");
 
+
 // Load configuration
 var config = require("./config");
 
