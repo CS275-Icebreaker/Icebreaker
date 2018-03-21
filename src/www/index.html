@@ -35,6 +35,8 @@
             });
         });
 
+        var room_id = ""
+
         function createRoom()
         {
             var roomName = document.getElementById("cname2").value;
@@ -47,6 +49,11 @@
                 dataType: "html",
                 success: function(msg) {
                     console.log(msg);
+                    console.log(msg);
+                    console.log(msg);
+                    room_id = msg._id;
+                    console.log(room_id);
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log("Error fetching " + URL);
