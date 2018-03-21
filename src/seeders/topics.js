@@ -20,10 +20,10 @@ function seedTopics() {
 	Promise.all(promises)
 		.then((topicModels) => {
 			console.log(`All ${topicModels.length} topics have been inserted`);
-		});
+		})
 		.catch((err) => {
 			throw `error adding topics to database: ${err}`;
-	})
+	});
 }
 
 
