@@ -20,12 +20,16 @@ function handle(req, res) {
 	
 	var name = req.body.name; 
 	var owner_id = req.body.ownerId;
-	var newroom = new Room({name: name}); 
+	var val = Math.floor(1000 + Math.random() * 9000);
+	var q = val.toString();
+	var newroom = new Room({name: name, code: q, group_num: 0, stage: "???", owner_id: owner_id}); 
 	var promise = newroom.save()
-	.then((room) => {
-		var val = Math.floor(1000 + Math.random() * 9000);
-		var q = val.toString(); 
+	.then((room) => { 
 		return Promise.resolve({name: name, code: q, group_num: 0, stage: "???", owner_id: owner_id});
+		//--if line 28 doesn't work, use this
+		//return Promise.resolve(newroom); 
+		//--old code
+		//return Promise.resolve({name: name, code: q, group_num: 0, stage: "???", owner_id: owner_id});
 	})
 	.catch((err) => {
 		throw 'error: could not create room';
