@@ -1,6 +1,7 @@
 "use strict";
 
 var choose = require("./choose");
+var choose = require("./getAll");
 
 /**
  * Registers app topics endpoint handlers
