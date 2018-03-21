@@ -3,7 +3,7 @@
 var users = require("./users");
 var groups = require("./groups");
 var topics = require("./topics");
-var rooms = requore("./rooms");
+var rooms = require("./rooms");
 
 /**
  * Adds all Model method endpoint handlers to the Express app
