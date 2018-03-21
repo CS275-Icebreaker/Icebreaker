@@ -5,13 +5,18 @@ var Socket = require("socket.io");
 
 /**
  * Registers web socket handlers with the Express app
- * @param {Express App} app Express app to register handlers with
+ * @param {HTTP Server} server HTTP server to register handlers with
  */
-function register(app) {
-	var server = http(app);
-	var io = Socket(server)
+function register(server) {
+	var io = Socket.listen(server)
 
 	io.on("connection", (socket) => {
-		console.log("socket client connected");
+		socket.emit("grouped", "test");
 	});
+
+	console.log("listening for websocket connections");
 }
+
+module.exports = {
+	register: register
+};

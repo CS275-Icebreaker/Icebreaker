@@ -25,7 +25,12 @@ function handle(req, res) {
 	.then((room) => {
 		var val = Math.floor(1000 + Math.random() * 9000);
 		var q = val.toString(); 
-		return Promise.resolve({name: name, code: q, group_num: 0, stage: "???", owner_id: owner_id});
+		return Promise.resolve({
+			name: name, 
+			code: q, 
+			group_num: 1, 
+			owner_id: owner_id
+		});
 	})
 	.catch((err) => {
 		throw 'error: could not create room';

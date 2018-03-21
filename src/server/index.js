@@ -1,10 +1,13 @@
 "use strict";
 
+var http = require("http");
+
 var express = require("express");
 var bodyParser = require("body-parser");
 
 var config = require("../config");
 var endpoints = require("../endpoints");
+var socket = require("../socket");
 
 /**
  * HTTP server.
@@ -16,6 +19,10 @@ class Server {
 		// Configure express server
 		this.app = express();
 
+		// Make HTTP server from express server
+		this.server = http.createServer(this.app);
+		
+		// Static HTML
 		this.app.use(express.static(config.staticDir));
 		this.app.use("/lib", express.static("./node_modules"));
 
@@ -23,6 +30,10 @@ class Server {
 
 		// Register endpoints
 		endpoints.register(this.app);
+
+		// Register websocket handlers
+		socket.register(this.server);
+
 	}
 
 	/**
@@ -40,8 +51,9 @@ class Server {
 	 * @param {Function} reject Promise reject function
 	 */
 	_start(resolve, reject) {
-		// Start express server
-		this.app.listen(config.port, () => {
+		// Start http server
+		this.server.listen(config.port);
+		this.server.on("listening", () => {
 			resolve();
 		});
 	}
