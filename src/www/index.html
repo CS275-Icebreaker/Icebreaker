@@ -2,17 +2,114 @@
 <html lang="en" xmlns="https://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+
+    <style>
+        * {box-sizing: border-box}
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            background: #f1f1f1f1;
+        }
+
+        /* Slides */
+        .mySlides {
+            display: none;
+            padding: 80px;
+            text-align: center;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -30px;
+            padding: 16px;
+            color: #888;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            position: absolute;
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+        }
+
+        /* The dot/bullet/indicator container */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Add a background color to the active dot/circle */
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+
+    </style>
+
     <title>Icebreaker App</title>
 
 
     <!-- jquery and jquerymobile links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+
+
+    <script type="text/javascript" src="/index.js"> </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#JoinForm").validate();
+            $("#JoinForm2").validate({
+                rules: {
+                    room_key: {
+                        required: true
+                    }
+                }
+            });
+            $("#JoinForm3").validate({
+                rules: {
+                    SelectElmt: {
+                        required: true
+                    }
+                }
+            });
+        });
+
+    </script>
 
 </head>
 <body>
-<br>
 <div data-role="page" id="one" align="center">
     <div data-role="header" data-position="fixed">
         <h3 align="center">Icebreaker App </h3>
@@ -21,14 +118,19 @@
 
     <img src="/img/logo.png" alt=" App logo" width="150" height="150">
 
-    <form>
-        <input type="text" id="GetVal"/>
-        <input type="button" id="JoinButton" value="Join"/>
+    <form id="JoinForm" class="form-horizontal" action="#user_info">
+        <div class="form-group">
+            <p>
+                <label for="cname">Please enter your pin</label>
+                <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
+            </p>
 
+            <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
+        </div>
     </form>
 
     <h5> OR </h5>
-    <a href="/create-room.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+    <a href="#create_room" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
 
     <footer>
         <div data-role="footer" data-position="fixed">
@@ -38,7 +140,429 @@
 </div>
 
 
+<!--------------------------------------------Page 2 begin here------------------------------------------------------>
+<div data-role="page" id="create_room" data-theme="a" align="center">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>Create a room</h3>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <p>Instructions: .</p>
+        <p>> To create a room, please enter a key in the input box and then hit the submit button </p>
+    </div><!-- /content -->
+
+
+
+    <form id="JoinForm2" class="form-horizontal" action="#user_info">
+        <div class="form-group">
+            <p>
+                <label for="cname2">Please enter your pin</label>
+                <input id="cname2" name="room_key" type="number" class="form-control required" maxlength="4">
+            </p>
+
+            <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+
+        </div>
+    </form>
+
+
+    <div id="result"></div>
+
+
 </div>
 
+<!--------------------------------------------Page 3 begin here------------------------------------------------------>
+
+<div data-role="page" id="user_info" data-theme="a" align="center" class="ui-field-contain">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>User information</h3>
+    </div>
+
+    <form id="JoinForm3" class="form-horizontal" action="#select_topics">
+        <br>
+        <br>
+        <div class="form-group">
+            <input type="text" name="text-basic" id="GetName" class="form-control required" placeholder="Enter your name..." required>
+
+
+            <input type="text" id="GetMajor" class="form-control required" placeholder="Enter your major..." required>
+
+            <br>
+            <label for="GetYear">Select your year:</label>
+            <select name="SelectElmt" id="GetYear">
+                <option value="">Select one...</option>
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Pre-Junior">Pre-Junior</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+            </select>
+            <br>
+            <a href="#select_topics" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
+
+            <br>
+
+        </div>
+    </form>
+
+    <div id="result"></div>
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+
+</div>
+
+
+<!--------------------------------------------Page 4 begin here------------------------------------------------------>
+
+<div data-role="page" id="select_topics" data-theme="a" align="center" class="ui-field-contain">
+    <div class="slideshow-container">
+        <div data-role="header">
+            <a href="/index.html" data-icon="delete">Cancel</a>
+            <h3>Select topics </h3>
+        </div>
+
+        <!-- ========================================Topic 1=================================================================-->
+        <div class="mySlides" data-theme="a"  align="center">
+            <h4>Select topic 1</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic1')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic2')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- ========================================Topic 2=================================================================-->
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 2</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic3')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic4')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+
+        </div>
+
+        <!-- ========================================Topic 3=================================================================-->
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 3</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic5')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic6')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- ========================================Topic 4=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 4</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic7')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic8')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- ========================================Topic 5=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 5</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic9')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic10')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- ========================================Topic 6=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 6</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic11')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic12')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- ========================================Topic 7=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 7</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic13')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic14')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- ========================================Topic 8=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 8</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic15')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic16')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+
+        </div>
+        <!-- ========================================Topic 9=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 9</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic17')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic18')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+
+
+        </div>
+
+        <!-- ========================================Topic 10=================================================================-->
+
+
+
+        <div class="mySlides" data-theme="a" align="center">
+            <h4>Select topic 10</h4>
+            <ul data-role="listview" data-split-theme="a" data-inset="true">
+                <li>
+                    <a onclick="AddToArray('Topic19')">
+                        <img src="/img/sports.png">
+                        <h2>Sports</h2>
+                    </a>
+
+                </li>
+                <li>
+                    <a onclick="AddToArray('Topic20')">
+                        <img src="/img/video_games.png">
+                        <h2>Video games</h2>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <a href="#assigned_topics" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Next stage</a>
+        </div>
+
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+    </div>
+
+
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+        <span class="dot" onclick="currentSlide(9)"></span>
+        <span class="dot" onclick="currentSlide(10)"></span>
+
+    </div>
+</div>
+
+<!-- ========================================Assigned topics part=================================================================-->
+
+
+<div data-role="page" id="assigned_topics" data-theme="a" align="center">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>Assigned Topics </h3>
+    </div>
+
+    <a href="#topics_page" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Topics page</a>
+
+
+    <div id="result"></div>
+
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+
+
+</div>
+<!-- ======================================== topic info part=================================================================-->
+
+
+
+
+<div data-role="page" id="topics_page" data-theme="a" align="center">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>Topic information</h3>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <p> Topic 1 title</p>
+        <br>
+        <p> Suggested questions to ask: </p>
+        <p>1....................... </p>
+        <p>2....................... </p>
+        <p>3....................... </p>
+        <p>4....................... </p>
+
+
+    </div>
+
+    <a href="#thank-you-page" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Next stage</a>
+
+    <div id="result"></div>
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+
+    </footer>
+</div>
+
+
+<!-- ======================================== Thank you part=================================================================-->
+
+<div data-role="page" id="thank-you-page" align="center">
+    <div data-role="header" data-position="fixed">
+        <h3 align="center">Icebreaker App </h3>
+    </div>
+    <br>
+
+    <img src="img/logo.PNG" alt=" App logo" width="150" height="150">
+
+
+    <h3> Thank you for using Ice-breaker app </h3>
+
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+</div>
 </body>
 </html>
