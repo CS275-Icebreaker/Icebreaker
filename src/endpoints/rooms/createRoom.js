@@ -14,7 +14,7 @@ var URL = "/api/users/join";
  * Endpoint handler for createForRoom endpoint.
  */
 function handle(req, res) {
-	if (!helpers.request.requireBodyFields(req, res, ["name"]) {
+	if (!helpers.request.requireBodyFields(req, res, ["name"])) {
 		return;
 	}
 	
