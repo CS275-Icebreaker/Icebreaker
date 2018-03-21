@@ -19,22 +19,17 @@ function handle(req, res) {
 	}
 	
 	var name = req.body.name; 
-	var owner_id = req.body.ownerId;
+
 	var newroom = new Room({name: name}); 
+
 	var promise = newroom.save()
-	.then((room) => {
-		var val = Math.floor(1000 + Math.random() * 9000);
-		var q = val.toString(); 
-		return Promise.resolve({
-			name: name, 
-			code: q, 
-			group_num: 1, 
-			owner_id: owner_id
+		.then((room) => {
+			return Promise.resolve(room);
+		})
+		.catch((err) => {
+			throw `error could not create room: ${err}`;
 		});
-	})
-	.catch((err) => {
-		throw 'error: could not create room';
-	});
+
 	helpers.response.sendPromise(res, promise);
 }
 

@@ -29,11 +29,10 @@ class Server {
 		this.app.use(bodyParser.json());
 
 		// Register endpoints
-		endpoints.register(this.app);
+		endpoints.register(this.app, this);
 
 		// Register websocket handlers
-		socket.register(this.server);
-
+		this.socket = socket.register(this.server);
 	}
 
 	/**

@@ -9,11 +9,11 @@ var rooms = require("./rooms");
  * Adds all Model method endpoint handlers to the Express app
  * @param {ExpressJS App} app Express app to add handlers to
  */
-function register(app) {
-	users.register(app);
-	groups.register(app);
-	topics.register(app);
-	rooms.register(app); 
+function register(app, server) {
+	users.register(app, server);
+	groups.register(app, server);
+	topics.register(app, server);
+	rooms.register(app, server); 
 }
 
 module.exports = {
