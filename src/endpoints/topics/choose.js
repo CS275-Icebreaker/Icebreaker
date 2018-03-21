@@ -5,11 +5,13 @@ var mongoose = require("mongoose");
 var helpers = require("../helpers");
 var User = require("../../models/user");
 var Topic = require("../../models/topic");
+var Room = require("../../models/room");
 
 /**
  * Chooses a list of topics for a user
  */
-function handle(req, res) {
+function mkHandler(server) {
+	return (req, res) => {
 	if(helpers.request.requireBodyFields(req, res, ["topics", "user_id"])) {
 		var topics = req.body.topics;
 		var userId = req.body.user_id;
@@ -95,22 +97,36 @@ function handle(req, res) {
 					});
 			})
 			.then((state) => {
+				// Determine if user was last to select a topic 
+				return Room.AllUsersSelected(server, state.user.room_id)
+					.then((selected) => {
+						return Promise.resolve(state);
+					})
+					.catch((err) => {
+						throw `error determining if `+
+							`user was last user to`+
+							` select topics: ${err}`;
+					})
+			})
+			.then((state) => {
 				return Promise.resolve({
 					user: state.user.public()
 				});
 			});
 
 		// Send response
-		helpers.response.sendPromise(res, promise);
+		helpers.response.sendPromise(res, promise)
+	}
 	}
 }
 
 /**
  * Registers choose topic endpoint
  * @param {Express App} app Express app to register handler with
+ * @param {Server} server
  */
-function register(app) {
-	app.post("/api/topics/choose", handle);
+function register(app, server) {
+	app.post("/api/topics/choose", mkHandler(server));
 }
 
 module.exports = {
