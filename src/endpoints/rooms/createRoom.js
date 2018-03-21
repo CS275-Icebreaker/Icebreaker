@@ -19,7 +19,7 @@ function handle(req, res) {
 	}
 	
 	var name = req.body.name; 
-
+  
 	var newroom = new Room({name: name}); 
 
 	var promise = newroom.save()
