@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
+
     <title>Icebreaker App</title>
 
     <!-- jquery and jquerymobile links -->
@@ -53,10 +54,29 @@
                 }
             });
         }
-
+		
+		function findRoomCode(){
+			var roomcode = document.getElementById("cname").value; 
+			var URL = "http://localhost:8000/api/rooms/code:" + roomcode; 
+			$.ajax({
+				type: "GET",
+				url: URL, 
+				dataType: "html", 
+				success: function(msg) {
+					$(this).click(function (j) {
+						var href = ($(this).attr("#user_info"));
+						window.location = href;
+						return true;
+					});
+				}, 
+				error: function (xhr, ajaxOptions, thrownError) {
+					document.getElementById("errortag").innerHTML = "Could not find room with code " + roomcode + ".";
+				}
+			});
+		
+		}
     </script>
 
-    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
 <div data-role="page" id="one" align="center">
@@ -71,10 +91,11 @@
         <div class="form-group">
             <p>
                 <label for="cname">Please enter your pin</label>
+				<div id="errortag"> </div>
                 <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
             </p>
-
-            <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
+				<button onclick=findRoomCode()> Join a room </button>
+           <!-- <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a> -->
         </div>
     </form>
 
@@ -167,6 +188,7 @@
     </footer>
 
 </div>
+
 
 <!--------------------------------------------Page 4 begin here------------------------------------------------------>
 
@@ -299,7 +321,5 @@
         </div>
     </footer>
 </div>
-
-    <script src="/js/app.js"></script>
 </body>
 </html>
