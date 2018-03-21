@@ -8,7 +8,7 @@ var Token = require("../../auth/token");
 var Room = require("../../models/room");
 var User = require("../../models/user");
 
-var URL = "/api/users/join";
+var URL = "/api/rooms";
 
 /**
  * Endpoint handler for createForRoom endpoint.
