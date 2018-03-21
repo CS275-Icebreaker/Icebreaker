@@ -3,7 +3,7 @@
 var Server = require("./server");
 var db = require("./db");
 var Seeder = require("./seeders/topics.js");
-
+var group = require("./grouping/groupHelper.js");
 
 // Load configuration
 var config = require("./config");
@@ -22,7 +22,7 @@ db.connect()
 
 Seeder.seedTopics();
 
-// Listen
+/* Listen
 var server = new Server();
 server.start()
 	.then(() => {
@@ -32,3 +32,7 @@ server.start()
 		console.error(`error starting server: ${err}`);
 		process.exit();
 	});
+*/
+console.log("made it");
+group("5ab2d78184f883c7c62dbda2");
+console.log("made it");
