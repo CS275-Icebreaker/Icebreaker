@@ -2,6 +2,7 @@
 
 var Server = require("./server");
 var db = require("./db");
+var Seeder = require("./seeders/topics.js");
 
 
 // Load configuration
@@ -18,6 +19,8 @@ db.connect()
 		console.error(`error connecting to MongoDB: ${err}`);
 		process.exit();
 	});
+
+Seeder.seedTopics();
 
 // Listen
 var server = new Server();
