@@ -40,7 +40,7 @@ function nextTopic(choosen) {
  
         str += '<br>';
         str += '<br>';
-        str += '<img src="' + topic.picture_path + '">';
+        str += '<img width=200px" src="' + topic.picture_path + '">';
 
         str += '    <br>';
         if (window.choosenTopics.length < 10) {

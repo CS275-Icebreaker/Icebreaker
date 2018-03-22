@@ -3,14 +3,7 @@
 var randtoken = require("rand-token");
 var mongoose = require("mongoose");
 
-// TODO: Improve grouper/groupHelper when merged
-var grouper = (id) => { 
-	return Promise.resolve([
-		{room_id: id, topic: "a"},
-		{room_id: id, topic: "b"}
-	]); 
-};
-
+var grouper = require("../grouping/groupHelper");
 var User = require("./user");
 
 var RoomSchema = mongoose.Schema({
@@ -56,13 +49,17 @@ RoomSchema.statics.AllUsersSelected = function(server, id) {
 		}
 
 		// If all selected
-		return grouper(id);
-	}).then((groups) => {
-		// Notify clients
-		server.socket.to(id).emit("grouped", groups);
+        return grouper(id)
+            .catch((err) => {
+                throw `error grouping: ${err}`;
+            }).then((groups) => {
+                // Notify clients
+                server.socket.to(id).emit("grouped", groups);
+                console.log(`emitting at ${new Date()}`);
 
-		return Promise.resolve(true);
-	});
+                return Promise.resolve(true);
+            });
+    });
 }
 
 var Room = mongoose.model('Room', RoomSchema);

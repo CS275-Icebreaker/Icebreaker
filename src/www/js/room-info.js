@@ -1,4 +1,2 @@
-function showRoom() {
-    document.getElementById("show-room-code").innerHTML = window.room.code;
-    document.getElementById("show-room-name").innerHTML = window.room.name;
-}
+document.getElementById("show-room-code").innerHTML = window.room.code;
+document.getElementById("show-room-name").innerHTML = window.room.name;

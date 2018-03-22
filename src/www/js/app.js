@@ -5,6 +5,7 @@ var RoomInfoPage = "#room-info";
 var UserInfoPage = "#user-info";
 var SelectTopicsPage = "#select-topics";
 var SelectedTopicsPage = "#selected-topics";
+var GroupsPage = "#groups";
 var ThankYouPage = "#thank-you";
 var NotFound = "#not-found";
 
@@ -15,6 +16,7 @@ var routes = [
     UserInfoPage, 
     SelectTopicsPage, 
     SelectedTopicsPage, 
+    GroupsPage,
     ThankYouPage, 
     NotFound
 ];
@@ -90,3 +92,26 @@ commonErrEl.onclick = function() {
 
     clearError();
 }
+
+// Socket IO
+var socket = io.connect();
+
+socket.on("connect", function() {
+	console.log("socket connected");
+});
+
+socket.on("grouped", function(data) {
+    console.log("grouped", data);
+});
+// On groups
+socket.on("grouped", function(data) {
+	console.log("grouped: ", data);
+});
+// On groups
+socket.on("grouped", function(data) {
+	console.log("grouped: ", data);
+});
+// On groups
+socket.on("grouped", function(data) {
+    window.groups = data;
+});

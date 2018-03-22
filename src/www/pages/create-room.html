@@ -1,5 +1,5 @@
 <div role="main" class="ui-content">
-    <p>Instructions: .</p>
+    <h1>Instructions</h1>
     <p>To create a room, please enter a key in the input box and then hit the submit button </p>
 </div>
 
@@ -9,10 +9,13 @@
     <div class="form-group">
         <p>
             <label for="room-name">Please enter a name for your room</label>
-            <input id="room-name" name="room_key" class="form-control required">
+            <input id="room-name" class="form-control required">
         </p>
 
-        <a href="#room_info" onclick="createRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
+        <button onclick="createRoom()" 
+            class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">
+            Create a room
+        </button>
 
     </div>
 </form>

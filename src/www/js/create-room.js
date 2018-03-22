@@ -1,4 +1,6 @@
 function createRoom() {
+    console.log("create room clicked");
+
     var roomName = document.getElementById("room-name").value;
 
     var URL = "/api/rooms";
@@ -8,11 +10,10 @@ function createRoom() {
         url: URL,
         data: JSON.stringify({name: roomName}),
         contentType: "application/json",
-        dataType: "html",
-        success: function(txt) {
-            window.room = JSON.parse(txt);
+        success: function(room) {
+            window.room = room;
 
-            showRoom();
+            loadPage(RoomInfoPage);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             showError("Error creating room" + thrownError.toString());

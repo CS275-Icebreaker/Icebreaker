@@ -21,6 +21,13 @@ function joinRoom() {
         success: function(resp) {
             window.room = resp.room;
 
+            // Join socket for room
+            socket.emit("join", window.room._id);
+            socket.on("join-ack", function(ackRoomId) {
+                console.log("joined room", ackRoomId);
+            });
+
+
             loadPage(UserInfoPage);
         },
         error: function (xhr, ajaxOptions, thrownError) {
