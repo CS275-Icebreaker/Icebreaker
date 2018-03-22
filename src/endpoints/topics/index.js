@@ -1,14 +1,15 @@
 "use strict";
 
 var choose = require("./choose");
-var choose = require("./getAll");
+var getAll = require("./getAll");
 
 /**
  * Registers app topics endpoint handlers
  * @param {Express App} app Express app to register handlers with
  */
-function register(app) {
-	choose.register(app);
+function register(app, server) {
+	choose.register(app, server);
+	getAll.register(app, server);
 }
 
 module.exports = {

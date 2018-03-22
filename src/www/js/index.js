@@ -14,7 +14,7 @@ $(document).ready(function() {
 var slideIndex = 1;
 var topics = [];
 
-showSlides(slideIndex);
+//showSlides(slideIndex);
 
 function plusSlides(n) {
     showSlides(slideIndex += n);
@@ -56,14 +56,23 @@ function AddToArray(listitems){
     }
 
 }
-$.ajax({
-    type: "POST",
-    url: "/api/topics/choose",
-    data: {topics},
-    success: function(){
-        console.log("submitted");
-    },
-    error: function(){
-        console.log("failed!!");
-    }
-});
+
+$(document).ready(function() {
+            $("#JoinForm").validate();
+            $("#JoinForm2").validate({
+                rules: {
+                    room_key: {
+                        required: true
+                    }
+                }
+            });
+            $("#JoinForm3").validate({
+                rules: {
+                    SelectElmt: {
+                        required: true
+                    }
+                }
+            });
+        });
+
+
