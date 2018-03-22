@@ -17,9 +17,6 @@
 <body>
     <!-- Home Screen -->
     <div data-role="page" id="home" align="center">
-
-        
-
         <div data-role="header" data-position="fixed">
             <h3 align="center">Icebreaker App </h3>
         </div>
@@ -30,11 +27,11 @@
         <form id="JoinForm" class="form-horizontal" action="#user_info">
             <div class="form-group">
                 <p>
-                    <label for="cname">Please enter a room code</label>
+                    <label for="cname">Please enter your pin</label>
                     <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
                 </p>
 
-                <a href="#user_info" onclick="joinRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
+                <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
             </div>
         </form>
 
@@ -279,6 +276,5 @@
 
     <script src="/js/app.js"></script>
     <script src="/js/index.js"> </script>
-     <script src="/js/join-room.js"></script>
 </body>
 </html>
