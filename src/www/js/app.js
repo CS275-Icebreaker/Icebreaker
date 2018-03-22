@@ -4,7 +4,7 @@ var CreateRoomPage = "#create-room";
 var RoomInfoPage = "#room-info";
 var UserInfoPage = "#user-info";
 var SelectTopicsPage = "#select-topics";
-var SelectedTopicsPage = "#selected-topics-page";
+var SelectedTopicsPage = "#selected-topics";
 var ThankYouPage = "#thank-you";
 var NotFound = "#not-found";
 
