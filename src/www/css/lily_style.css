@@ -28,7 +28,7 @@
     text-shadow: none !important;
 }
 
-h5, body, input, select, textarea, .ui-select .ui-btn select{
+h5, body, textarea, .ui-select .ui-btn select, li{
     font-family: 'Mina', sans-serif !important;
     color: white;
     text-shadow: none;
