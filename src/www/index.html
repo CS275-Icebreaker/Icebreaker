@@ -89,13 +89,32 @@
         <h1>Room Code:</h1>
         <br>
         <h1 id="show-room-code"></h1>
+            <br>
+            <label for="GetYear">Select your year:</label>
+            <select name="SelectElmt" id="GetYear">
+                <option value="">Select one...</option>
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Pre-Junior">Pre-Junior</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+            </select>
+            <br>
+            <a href="#select_topics" onclick="createUser()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
 
-        <footer>
-            <div data-role="footer" data-position="fixed">
-                <h4 align="center"> Icebreaker App</h4>
-            </div>
-        </footer>
-    </div>
+            <br>
+
+        </div>
+    </form>
+
+    <div id="result"></div>
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+
+</div>
 
     <!-- User Info Screen -->
     <div data-role="page" id="user_info" data-theme="a" align="center" class="ui-field-contain">
@@ -193,6 +212,7 @@
 
     <script src="/js/app.js"></script>
     <script src="/js/index.js"> </script>
+    <script src="/js/create-user.js"></script>
     <script src="/js/select-topics.js"></script>
     <script src="/js/create-room.js"></script>
     <script src="/js/room-info.js"></script>
