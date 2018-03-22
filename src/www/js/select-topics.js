@@ -65,10 +65,10 @@ function sendTopics() {
 	    url: "/api/topics/choose",
 	    data: {topics},
 	    success: function(){
-		console.log("submitted");
+            console.log("submitted");
 	    },
 	    error: function(){
-		console.log("failed!!");
+            showError("Failed to submit topics " + err.toString());
 	    }
 	});
 }

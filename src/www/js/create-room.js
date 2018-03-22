@@ -15,7 +15,7 @@ function createRoom() {
             showRoom();
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.log("Error fetching " + URL);
+            showError("Error creating room" + thrownError.toString());
         }
     });
 }
