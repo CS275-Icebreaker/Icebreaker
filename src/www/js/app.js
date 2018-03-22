@@ -26,10 +26,20 @@ var contentEl = $("#content");
  * @param {String} loc Name of page with hash in from (ex., #home)
  */
 function loadPage(loc) {
+    var originalLoc = loc;
+
     // Check route is found
     if (routes.indexOf(loc) === -1) {
         loc = NotFound;
     }
+
+    // Check not already loaded
+    if(contentEl.attr("data-loaded") === loc) {
+        return;
+    }
+
+    contentEl.attr("data-loaded", loc);
+
 
     var withoutHash = loc.substring(1);
     contentEl.load("/pages/" + withoutHash + ".html");
@@ -50,12 +60,33 @@ if (window.location.hash) {
     loc = "#" + parts[1];
 }
 
+console.log("dom load", loc);
 loadPage(loc);
 
 // Errors
 var commonErrEl = document.getElementById("common-error-box");
+var errTimeout = undefined;
 
 function showError(err) {
+    console.error(err);
+
     commonErrEl.innerText = err.toString();
     commonErrEl.style.display = "block";
+
+    errTimeout = setTimeout(function() {
+        clearError();
+    }, 7000);
+}
+
+function clearError() {
+    commonErrEl.innerText = "";
+    commonErrEl.style.display = "none";
+ }
+
+commonErrEl.onclick = function() {
+    if (errTimeout !== undefined) {
+        clearInterval(errTimeout);
+    }
+
+    clearError();
 }
