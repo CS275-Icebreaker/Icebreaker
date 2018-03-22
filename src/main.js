@@ -1,21 +1,43 @@
 "use strict";
 
-// App configuration
-const config = require("./config");
+var Server = require("./server");
+var db = require("./db");
+var Seeder = require("./seeders/topics.js");
+var group = require("./grouping/groupHelper.js");
 
-// Express setup
-const express = require("express");
-const app = express();
+// Load configuration
+var config = require("./config");
 
-app.use(express.static(config.staticDir));
+console.log(`loaded configuration for ${config.env} from ${config.configDir}`);
 
-// Endpoints
-app.get("/api/test", (req, res) => {
-	res.send({status: "ok"});
-});
+// Connect to db
+db.connect()
+	.then(() => {
+		console.log("connected to MongoDB");
+	})
+	.catch((err) => {
+		console.error(`error connecting to MongoDB: ${err}`);
+		process.exit();
+	});
 
-// Listen
-app.listen(config.port, () => {
-	console.log(`listening on port ${config.port}`);
-	console.log(`    navigate to localhost:${config.port} for development`);
+Seeder.seedTopics();
+
+// listen
+var server = new Server();
+server.start()
+	.then(() => {
+		console.log(`listening on port ${config.port}`);
+	})
+	.catch((err) => {
+		console.error(`error starting server: ${err}`);
+		process.exit();
+	});
+
+group("5ab2d78184f883c7c62dbda2")
+	.then(() => {
+		console.log(`listening on port ${config.port}`);
+	})
+	.catch((err) => {
+		console.error(`${err}`);
+		process.exit();
 });

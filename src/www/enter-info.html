@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Icebreaker App</title>
+
+
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- jquery and jquerymobile links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+
+</head>
+<body>
+
+<div data-role="page" id="create_room" data-theme="a" align="center" class="ui-field-contain">
+
+    <div data-role="header">
+        <a href="/index.html" data-icon="delete">Cancel</a>
+        <h3>User information</h3>
+    </div>
+
+    <form>
+        <br>
+        <br>
+
+
+        <input type="text" name="text-basic" id="GetName" placeholder="Enter your name..."/>
+
+
+        <input type="text" id="GetMajor" placeholder="Enter your major..."/>
+
+        <br>
+        <label for="GetYear">Select your year:</label>
+        <select name="select-native-fc" id="GetYear">
+            <option value="Freshman">Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Pre-Junior">Pre-Junior</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+        </select>
+
+    </form>
+    <a href="/select-topics.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
+
+
+
+
+    <div id="result"></div>
+    <footer>
+        <div data-role="footer" data-position="fixed">
+            <h4 align="center"> Icebreaker App</h4>
+        </div>
+    </footer>
+
+
+</div>
+
+</body>
+</html>
