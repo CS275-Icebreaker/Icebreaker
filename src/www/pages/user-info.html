@@ -1,0 +1,40 @@
+<form id="JoinForm3" class="form-horizontal" action="#select_topics">
+    <br>
+    <br>
+    <div class="form-group">
+        <input type="text" 
+               name="text-basic" 
+               id="GetName" 
+               class="form-control required" 
+               placeholder="Enter your name..." 
+               required>
+
+        <input type="text" 
+               id="GetMajor"
+               class="form-control required" 
+               placeholder="Enter your major..." 
+               required>
+
+        <br>
+
+        <label for="GetYear">Select your year:</label>
+        <select name="SelectElmt" id="GetYear">
+            <option value="">Select one...</option>
+            <option value="Freshman">Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Pre-Junior">Pre-Junior</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+        </select>
+
+        <br>
+
+        <a onclick="createUser()"
+           href="#select_topics" 
+           class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">
+            Submit
+        </a>
+    </div>
+</form>
+
+<script src="/js/create-user.js"></script>

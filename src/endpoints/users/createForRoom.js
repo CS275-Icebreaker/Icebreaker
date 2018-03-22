@@ -59,6 +59,7 @@ function handle(req, res) {
 			year: req.body.year,
 			major: req.body.major,
 			topics: [],
+            room_id: roomId,
 			auth_token_hash: state.hash
 		});
 		state.user = user;

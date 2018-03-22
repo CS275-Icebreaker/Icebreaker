@@ -1,0 +1,23 @@
+<div role="main" class="ui-content">
+    <h1>Instructions</h1>
+    <p>To create a room, please enter a key in the input box and then hit the submit button </p>
+</div>
+
+
+
+<form id="JoinForm2" class="form-horizontal" action="#user_info">
+    <div class="form-group">
+        <p>
+            <label for="room-name">Please enter a name for your room</label>
+            <input id="room-name" class="form-control required">
+        </p>
+
+        <button onclick="createRoom()" 
+            class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">
+            Create a room
+        </button>
+
+    </div>
+</form>
+
+<script src="/js/create-room.js"></script>

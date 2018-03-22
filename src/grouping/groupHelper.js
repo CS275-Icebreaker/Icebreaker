@@ -2,68 +2,103 @@
 
 var mongoose = require("mongoose");
 
-var helpers = require("../helpers");
 var group = require("./groupHelper");
-var Room = require("../../models/room");
-var User = require("../../models/user");
-var Group = require("../../models/group");
+var Room = require("../models/room");
+var User = require("../models/user");
+var Group = require("../models/group");
+
+function randomI(max) {
+    return Math.floor(Math.random() * max);
+}
 
 function makeGroups(roomID){
-console.log("made it");
 	var userA = [];
 
-	var promise = User.find({room_id: roomID})
-	.then((users) => {
-		userA = users;
+    var pickedTopics = [];
 
-		var groupSize = 0;
+	return User.find({room_id: roomID})
+        .then((users) => {
+            // Determine group size based on # of users
+            var groupSize = 0;
 
-		if(userA.length >= 25)
-			{groupSize = 5;}
-		else if(userA.length >= 16)
-			{groupSize = 4;}
-		else if(userA.length >= 9)
-			{groupSize = 3;}
-		else 
-			{groupSize = 2;}
+            if (users.length < 4) {
+                return Promise.reject("must have at least 4 players");
+            } else if (users.length < 6) {
+                groupSize = 2;
+            } else if (users.length < 10) {
+                groupSize = 3;
+            } else if (users.length < 18) {
+                groupSize = 5;
+            } else {
+                groupSize = 6;
+            }
 
-		var remainUsers = 0;
-		var groupNum = Math.floor(userA.length/groupSize);
+            // Determine number of groups
+            var remainUsers = 0;
+            var groupNum = Math.floor(users.length/groupSize);
 
-		if (userA.length%groupSize != 0)
-			{remainUsers = userA.length%groupSize}
+            if (users.length % groupSize != 0) {
+                remainUsers = users.length % groupSize;
+            }
 
-		var proms = [];
-		var groupA = [];
-		for(var i = 0; i < groupNum, i++)
-		{
-			var usersInGroup;
-			for(var j = i*groupSize; j < (i+1) * groupSize; j++)
-				{
-					usersInGroup.push(userA[j].id);
-					if(j == (groupNum * groupSize)-1 && remainUsers != 0)
-					{
-						for (var k = (groupNum * groupSize); i < userA.length; i++) 
-						{
-							usersInGroup.push(userA[k].id);
-						}
-					}
-				}
+            var proms = [];
+            var groups = [];
 
-			var group = new Group({
-				room_id: req.body.room_id,
-				topic_id: usersInGroup[0].topics.[0],
-				stage: 1,
-				members: usersInGroup
-				});
 
-			proms.push(group.save()
-			.catch((err) => {
-				throw `error saving user: ${err}`
-			}));
-		}
-		
-		return Promise.all(proms);
+            for(var groupI = 0; groupI < groupNum; groupI++){
+                var usersInGroup = [];
+
+                for(var memberI = 0; memberI < groupSize; memberI++) {
+                    usersInGroup.push(users.pop());
+                }
+
+
+                if (groupI === groupNum - 1) {
+                    while(remainUsers > 0) {
+                        usersInGroup.push(users.pop());
+                        remainUsers -= 1;
+                    }
+                }
+
+                var allTopics = [];
+                for(var user of usersInGroup) {
+                    for(var topic of user.topics) {
+                        if(allTopics.indexOf(topic) === -1) {
+                            allTopics.push(topic);
+                        }
+                    }
+                }
+
+                var choosenTopicIndex = randomI(allTopics.length - 1);
+                var topicId = allTopics[choosenTopicIndex]
+                allTopics = allTopics.splice(choosenTopicIndex, 1)
+
+                while(pickedTopics.indexOf(topicId) !== -1) {
+                    choosenTopicIndex = randomI(allTopics.length - 1);
+                    topicId = allTopics[choosenTopicIndex]
+                    allTopics.splice(choosenTopicIndex, 1)
+                }
+                pickedTopics.push(topicId);
+
+                var group = new Group({
+                    room_id: roomID,
+                    topic_id: topicId,
+                    stage: 1,
+                    members: usersInGroup
+                    });
+
+                var prom = group.save()
+                    .catch((err) => {
+                        throw `error saving user: ${err}`;
+                    });
+                proms.push(prom);
+            }
+            
+            return Promise.all(proms)
+                .catch((err) => {
+                    throw `error saving group: ${err}`;
+                });
+        });
 }
 
 module.exports = makeGroups;
