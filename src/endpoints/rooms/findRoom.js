@@ -9,7 +9,9 @@ var URL = "/api/room/code/:code";
 
 
 function handle(req, res) {
-	var promise = Room.find({"code": req.params.code})
+    var promise = Room.findOne({
+        code: req.params.code
+    })
 	.then((room) => {
 		// If it doesn't exist
 		if (room == null) {
