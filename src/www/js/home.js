@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    $("#JoinForm").validate({
+        rules: {
+            SelectElmt: {
+                required: true
+            }
+        }
+    });
+});
+
+$("#JoinForm").validate();
+
 function joinRoom() {
     var pin = document.getElementById("cname").value;
 

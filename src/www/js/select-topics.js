@@ -67,7 +67,7 @@ function sendTopics() {
 	    success: function(){
             console.log("submitted");
 	    },
-	    error: function(){
+	    error: function(err){
             showError("Failed to submit topics " + err.toString());
 	    }
 	});

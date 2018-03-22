@@ -19,3 +19,20 @@ function createRoom() {
         }
     });
 }
+
+$("#JoinForm2").validate({
+    rules: {
+        room_key: {
+            required: true
+        }
+    }
+});
+
+$("#JoinForm3").validate({
+    rules: {
+        SelectElmt: {
+            required: true
+        }
+    }
+});
+

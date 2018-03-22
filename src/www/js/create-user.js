@@ -1,5 +1,4 @@
-function createUser()
-{
+function createUser() {
     var room = "5ab2f51e2a620a16c439b96a";
     var userName = document.getElementById("GetName").value;
     var userYear = document.getElementById("GetYear").value;

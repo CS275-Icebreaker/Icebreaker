@@ -31,8 +31,6 @@ function loadPage(loc) {
         loc = NotFound;
     }
 
-    console.log("loading", loc);
-
     var withoutHash = loc.substring(1);
     contentEl.load("/pages/" + withoutHash + ".html");
 }
@@ -53,3 +51,11 @@ if (window.location.hash) {
 }
 
 loadPage(loc);
+
+// Errors
+var commonErrEl = document.getElementById("common-error-box");
+
+function showError(err) {
+    commonErrEl.innerText = err.toString();
+    commonErrEl.style.display = "block";
+}
