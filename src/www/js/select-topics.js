@@ -51,11 +51,21 @@ function nextTopic(choosen) {
 }
  
 function chooseTopic(topic) {
-    if(window.choosenTopics.indexOf(topic._id) === -1) {
-        window.choosenTopics.push(topic._id);
-        console.log("choose topic", topic);
+    if(choosenTopics.length < 10) {
+        if (window.choosenTopics.indexOf(topic._id) === -1) {
+            window.choosenTopics.push(topic._id);
+            console.log("choose topic", topic);
 
-        selectedTopicsEl.innerHTML += '<li>' + topic.name + '</li>';
+
+            selectedTopicsEl.innerHTML += ' <li>' + '<tr><td>' + ' <img src="' + topic.picture_path + '">' + '    ';
+            selectedTopicsEl.innerHTML += ' Topic name: ' + topic.name + '   ';
+            selectedTopicsEl.innerHTML += '<br> ' +  'Description: ' + topic.description + '<tr><td>'  + '</br>';
+            selectedTopicsEl.innerHTML += '<br>';
+
+
+        }
+    } else {
+        alert("Only 10 topics allowed!");
     }
 }
 

@@ -28,10 +28,10 @@
             <div class="form-group">
                 <p>
                     <label for="cname">Please enter your pin</label>
-                    <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
+                    <input id="cname" name="pin_number" type="number" maxlength=4 required/>
+                    <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
                 </p>
 
-                <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
             </div>
         </form>
 
@@ -67,7 +67,7 @@
             <div class="form-group">
                 <p>
                     <label for="room-name">Please enter a name for your room</label>
-                    <input id="room-name" name="room_key" class="form-control required">
+                    <input id="room-name" name="room_key" required/>
                 </p>
 
                 <a href="#room_info" onclick="createRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
@@ -109,10 +109,10 @@
             <br>
             <br>
             <div class="form-group">
-                <input type="text" name="text-basic" id="GetName" class="form-control required" placeholder="Enter your name..." required>
+                <input type="text" name="text-basic" id="GetName" class="form-control required" placeholder="Enter your name..." required/>
 
 
-                <input type="text" id="GetMajor" class="form-control required" placeholder="Enter your major..." required>
+                <input type="text" id="GetMajor" class="form-control required" placeholder="Enter your major..." required/>
 
                 <br>
                 <label for="GetYear">Select your year:</label>
@@ -146,7 +146,7 @@
 
         <div class="slideshow-container">
             <div data-role="header">
-                <a href="/index.html" data-icon="delete">Cancel</a>
+                <a href="#home" data-icon="delete">Cancel</a>
                 <h3>Select topics </h3>
             </div>
 
@@ -164,6 +164,7 @@
         </div>
 
         <ul id="selected-topics-list"></ul>
+        <a href="#thank-you-page" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Done</a>
 
         <footer>
             <div data-role="footer" data-position="fixed">
@@ -179,7 +180,7 @@
         </div>
         <br>
 
-        <img src="img/logo.PNG" alt=" App logo" width="150" height="150">
+        <img src="/img/logo.PNG" alt=" App logo" width="150" height="150">
 
 
         <h3> Thank you for using Ice-breaker app </h3>
