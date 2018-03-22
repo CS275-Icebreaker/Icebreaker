@@ -20,7 +20,10 @@ function handle(req, res) {
 	
 	var name = req.body.name; 
   
-	var newroom = new Room({name: name}); 
+    var newroom = new Room({
+        name: name,
+        code: Room.GenerateCode()
+    }); 
 
 	var promise = newroom.save()
 		.then((room) => {
