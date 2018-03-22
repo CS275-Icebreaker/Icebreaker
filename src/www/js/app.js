@@ -1,19 +1,55 @@
-// TODO: Use room ID for room code entered by user
-var roomId = "5ab2d39ac3ae3330c6320c99";
+// Page routing
+var HomePage = "#home";
+var CreateRoomPage = "#create-room";
+var RoomInfoPage = "#room-info";
+var UserInfoPage = "#user-info";
+var SelectTopicsPage = "#select-topics";
+var SelectedTopicsPage = "#selected-topics-page";
+var ThankYouPage = "#thank-you";
+var NotFound = "#not-found";
 
-var socket = io.connect();
+var routes = [
+    HomePage,
+    CreateRoomPage, 
+    RoomInfoPage, 
+    UserInfoPage, 
+    SelectTopicsPage, 
+    SelectedTopicsPage, 
+    ThankYouPage, 
+    NotFound
+];
 
-socket.on("connect", function() {
-	console.log("socket connected");
+var contentEl = $("#content");
 
-	// Join room
-	socket.emit("join", roomId);
-	socket.on("join-ack", function(ackRoomId) {
-		console.log("joined room", ackRoomId);
-	});
+/**
+ * Loads specified location into #content div
+ * @param {String} loc Name of page with hash in from (ex., #home)
+ */
+function loadPage(loc) {
+    // Check route is found
+    if (routes.indexOf(loc) === -1) {
+        loc = NotFound;
+    }
+
+    console.log("loading", loc);
+
+    var withoutHash = loc.substring(1);
+    contentEl.load("/pages/" + withoutHash + ".html");
+}
+
+// Load pages when url fragment changes
+$(window).on("navigate", function(event, data) {
+    var loc = data.state.hash;
+
+    loadPage(loc);
 });
 
-socket.on("grouped", function(data) {
-	// TODO: Call get groups endpoint
-	console.log("grouped: ", data);
-});
+// Load page when DOM loads
+var loc = HomePage;
+
+if (window.location.hash) {
+    var parts = window.location.hash.split("#")
+    loc = "#" + parts[1];
+}
+
+loadPage(loc);
