@@ -6,196 +6,36 @@
     <title>Icebreaker App</title>
 
     <!-- jquery and jquerymobile links -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+    <link type="text/css"
+          rel="stylesheet"
+          href="/css/style.css"/>
+    <link type="text/css"
+          rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
     <script src="/socket.io/socket.io.js"></script>
 </head>
-<body>
-<!-- Home Screen -->
-<div data-role="page" id="home" align="center">
-    <div data-role="header" data-position="fixed">
-        <h3 align="center">Icebreaker App </h3>
-    </div>
-    <br>
+<body data-role="page">
+<!-- Error Box -->
+<div style="color: red; display: none;" id="common-error-box"></div>
 
-    <img src="/img/logo.png" alt=" App logo" width="150" height="150">
-
-    <form id="JoinForm" class="form-horizontal" action="#user_info">
-        <div class="form-group">
-            <p>
-                <label for="cname">Please enter your pin</label>
-                <input id="cname" name="name" type="number" class="form-control required" maxlength="4">
-            </p>
-
-            <a href="#user_info" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Join a room</a>
-        </div>
-    </form>
-
-    <h5> OR </h5>
-    <a href="#create_room" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
-
-    <footer>
-        <div data-role="footer" data-position="fixed">
-            <h4 align="center"> Icebreaker App</h4>
-        </div>
-    </footer>
+<!-- Header -->
+<div data-role="header" data-position="fixed">
+    <h3 align="center">Icebreaker App</h3>
 </div>
 
-
-<!-- Create Room Screen -->
-<div data-role="page" id="create_room" data-theme="a" align="center">
-
-
-    <div data-role="header">
-        <a href="#home" data-icon="delete">Cancel</a>
-        <h3>Create a room</h3>
-    </div>
-
-
-    <div role="main" class="ui-content">
-        <p>Instructions: .</p>
-        <p>To create a room, please enter a key in the input box and then hit the submit button </p>
-    </div>
-
-
-
-    <form id="JoinForm2" class="form-horizontal" action="#user_info">
-        <div class="form-group">
-            <p>
-                <label for="room-name">Please enter a name for your room</label>
-                <input id="room-name" name="room_key" required/>
-            </p>
-
-            <a href="#room_info" onclick="createRoom()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Create a room</a>
-
-        </div>
-    </form>
+<div class="ui-content" id="content">
+    <h1>Loading</h1>
 </div>
 
-<!-- Room Info Screen -->
-<div data-role="page" id="room_info" align="center">
-
-    <div data-role="header">
-        <a href="#home" data-icon="delete">Cancel</a>
-        <h3>User information</h3>
-    </div>
-
-
-    <h1 id="show-room-name"></h1>
-    <h1>Room Code:</h1>
-    <br>
-    <h1 id="show-room-code"></h1>
-
-    <footer>
-        <div data-role="footer" data-position="fixed">
-            <h4 align="center"> Icebreaker App</h4>
-        </div>
-    </footer>
-</div>
-
-<!-- User Info Screen -->
-<div data-role="page" id="user_info" data-theme="a" align="center" class="ui-field-contain">
-
-    <div data-role="header">
-        <a href="#home" data-icon="delete">Cancel</a>
-        <h3>User information</h3>
-    </div>
-
-    <form id="JoinForm3" class="form-horizontal" action="#select_topics">
-        <br>
-        <br>
-        <div class="form-group">
-            <input type="text" name="text-basic" id="GetName" class="form-control required" placeholder="Enter your name..." required/>
-
-
-            <input type="text" id="GetMajor" class="form-control required" placeholder="Enter your major..." required/>
-
-            <br>
-            <label for="GetYear">Select your year:</label>
-            <select name="SelectElmt" id="GetYear">
-                <option value="">Select one...</option>
-                <option value="Freshman">Freshman</option>
-                <option value="Sophomore">Sophomore</option>
-                <option value="Pre-Junior">Pre-Junior</option>
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
-            </select>
-            <br>
-            <a href="#select_topics" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Submit</a>
-
-            <br>
-
-        </div>
-    </form>
-
-
-    <footer>
-        <div data-role="footer" data-position="fixed">
-            <h4 align="center"> Icebreaker App</h4>
-        </div>
-    </footer>
-
-</div>
-
-<!-- Select Topics Screen-->
-<div data-role="page" id="select_topics" data-theme="a" align="center" class="ui-field-contain">
-
-    <div class="slideshow-container">
-        <div data-role="header">
-            <a href="#home" data-icon="delete">Cancel</a>
-            <h3>Select topics </h3>
-        </div>
-
-        <div id="topics-container"></div>
-    </div>
-
-</div>
-
-<!-- Assigned topics screen -->
-<div data-role="page" id="assigned_topics" data-theme="a" align="center">
-
-    <div data-role="header">
-        <a href="/index.html" data-icon="delete">Cancel</a>
-        <h3>Assigned Topics </h3>
-    </div>
-
-    <ul id="selected-topics-list"></ul>
-    <a href="#thank-you-page" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Done</a>
-
-    <footer>
-        <div data-role="footer" data-position="fixed">
-            <h4 align="center"> Icebreaker App</h4>
-        </div>
-    </footer>
-</div>
-
-<!--  Thank you screen -->
-<div data-role="page" id="thank-you-page" align="center">
-    <div data-role="header" data-position="fixed">
-        <h3 align="center">Icebreaker App </h3>
-    </div>
-    <br>
-
-    <img src="/img/logo.PNG" alt=" App logo" width="150" height="150">
-
-
-    <h3> Thank you for using Ice-breaker app </h3>
-
-    <footer>
-        <div data-role="footer" data-position="fixed">
-            <h4 align="center"> Icebreaker App</h4>
-        </div>
-    </footer>
+<!-- Footer -->
+<div data-role="footer" data-position="fixed">
+    <h4 align="center">Icebreaker App</h4>
 </div>
 
 <script src="/js/app.js"></script>
-<script src="/js/index.js"> </script>
-<script src="/js/select-topics.js"></script>
-<script src="/js/create-room.js"></script>
-<script src="/js/room-info.js"></script>
 </body>
 </html>
