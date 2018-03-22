@@ -14,8 +14,8 @@ function createUser()
         contentType: "application/json",
         dataType: "html",
         success: function(msg) {
-            console.log(msg);
-            window.user = msg;
+            var parsed = JSON.parse(msg);
+            window.user = parsed.user;
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log("Error fetching " + URL);
