@@ -34,7 +34,7 @@ function handle(req, res) {
 	})
 	.catch((err) => {
 		throw `error checking for room with provided id, `+
-			`id: ${roomId}, err: ${err}`;
+			`id: ${roomId}, err: ${err.msg}`;
 	})
 	.then(() => {
 		var state = {};
