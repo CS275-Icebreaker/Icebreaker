@@ -1,0 +1,19 @@
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-image: linear-gradient(to bottom right,  #00b3b3, #002e4d);
+}
+
+.ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit{
+    background-color: #00131a !important;
+    opacity: 0.5;
+}
+
+.ui-header .ui-title, .ui-footer .ui-title {
+    color: white;
+    text-shadow: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.ui-mobile label, div.ui-controlgroup-label{
+    color: white;
+    text-shadow: none;
+}
