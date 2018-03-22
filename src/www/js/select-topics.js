@@ -2,7 +2,6 @@ window.choosenTopics = [];
 window.showingTopic = -1;
 
 var topicsContainerEl = document.getElementById("topics-container");
-var selectedTopicsEl = document.getElementById("selected-topics-list");
 
 $.get("/api/topics", function(topics) {
     window.topics = topics.topics;
@@ -29,20 +28,28 @@ function nextTopic(choosen) {
         str += '    <h2>' + topic.name + '</h2>';
         str += '    <h4>Would you like to talk about ' + topic.name + '?</h4>';
         str += '    <p>' + topic.description + '</p>';
-        str += '    <img src="' + topic.picture_path + '">';
-        str += '    <br>';
 
         if (lastTopic === false) {
-            str += '    <div onclick="nextTopic(false)" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">No</div>';
-            str += '    <div onclick="nextTopic(true)" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Yes</div>';
+            str += '<div onclick="nextTopic(false)" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">No</div>';
+            str += '<div onclick="nextTopic(true)" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Yes</div>';
         }
 
+        if (window.choosenTopics.length >= 10) {
+            str += '<a onclick="sendTopics()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Done</a>';
+        }
+ 
+        str += '<br>';
+        str += '<br>';
+        str += '<img width=200px" src="' + topic.picture_path + '">';
+
+        str += '    <br>';
         if (window.choosenTopics.length < 10) {
             str += '<br>';
             str += '<i>Please select at least ' + (10 - window.choosenTopics.length) + ' more topics</i>';
-        } else {
-            str += '    <a href="#assigned_topics" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline">Done</a>';
+            str += '<br>';
+            str += '<br>';
         }
+
 
         str += '</div>';
     }
@@ -52,23 +59,29 @@ function nextTopic(choosen) {
  
 function chooseTopic(topic) {
     if(window.choosenTopics.indexOf(topic._id) === -1) {
-        window.choosenTopics.push(topic._id);
-        console.log("choose topic", topic);
-
-        selectedTopicsEl.innerHTML += '<li>' + topic.name + '</li>';
+        window.choosenTopics.push(topic);
     }
 }
 
 function sendTopics() {
+    var ids = [];
+    for (var i = 0; i < window.choosenTopics.length; i++) {
+        ids.push(window.choosenTopics[i]._id);
+    }
+
 	$.ajax({
 	    type: "POST",
 	    url: "/api/topics/choose",
-	    data: {topics},
+        data: JSON.stringify({
+            user_id: window.user._id,
+            topics: ids
+        }),
+        contentType: "application/json",
 	    success: function(){
-		console.log("submitted");
+            loadPage(SelectedTopicsPage);
 	    },
-	    error: function(){
-		console.log("failed!!");
+	    error: function(err){
+            showError("Failed to submit topics " + JSON.stringify(err));
 	    }
 	});
 }
