@@ -7,6 +7,9 @@ the first time.
 
 # Table Of Contents
 - [Overview](#overview)
+- [User Guide](#user-guide)
+    - [Hosting a Room](#hosting-a-room)
+    - [Joining a Room](#joining-a-room)
 - [Running](#running)
 - [Developing](#developing)
 	- [Getting The Latest Code](#getting-the-latest-code)
@@ -22,6 +25,29 @@ the first time.
 Icebreaker is made up of 2 components: client & server.  
 
 A NodeJs server provides both these components.  
+
+# User Guide
+## Hosting a Room
+To create a room for other to join complete the following steps:  
+
+1. Navigate to the Icebreaker application in your browser
+2. Click the "Create Room" button
+3. Enter a name for your room
+
+After you have entered your room information you will be brought to a screen 
+showing the room information. Including a 4 digit room code other users should 
+enter to join your room.
+
+## Joining A Room
+To join an existing room complete the following steps:  
+
+1. Navigate to the Icebreaker application in your browser
+2. Enter the 4 digit room code displayed on the room creators screen
+3. Click the "Join Room" button
+4. Enter your user information: Name, Major, Academic year
+5. Select at least 10 topics to speak about
+6. Wait for everyone else to select their topics
+7. View your assigned groups
 
 # Running
 To run Icebreaker complete the following steps:
